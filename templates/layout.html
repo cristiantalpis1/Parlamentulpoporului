@@ -1,0 +1,106 @@
+<!--layout.html am facut pentru a automa si a nu a repeta codul de multe ori-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <!-- Bootstrap CSS only -->
+            {% if title %}
+            <title>{{ title }} | ParlamentulPoporului</title>
+        {% else %}    
+            <title>ParlamentulPoporului</title>
+        {% endif %}
+        <link rel="website icon" type="png" href="../static/logo.png">
+        
+        <!--Mai jos functia aia este inlocuita de codul din alte html files.-->
+        <!--"head" reprezinta numele blocului de cod--> 
+
+        {% block head %}
+        {% endblock head %}
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/d5aea39e8c.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        
+        <header id="header">
+            <a href="{{ url_for('acasa') }}"><img src="{{url_for('static',filename='logoNouPP.png')}}" id="logo"></a>
+            
+            <nav id="nav" >
+                <form action="{{ url_for('cautare') }}" method="post" id="cautareForm">
+                    <input type="text"
+                    placeholder="Cautare..."
+                    id="cautare" name="caut">
+                    <button type="submit" id="searchButton">  <i class="material-icons" >search</i></button>
+                </form>
+
+                <div>  
+                    {%if session.get("username")!=None  %}
+                        <a href="{{ url_for('account') }}"><i class="fa-regular fa-user account_icon"></i></a>
+                    {%else%}
+                        <a href="{{ url_for('inregistrare') }}"id="inregistrare"><i class="fa-regular fa-user account_icon"></i></a>
+                    {%endif%}
+                </div>
+                
+                <!-- <div id="limba">
+                    <p class="active-locale">RO</p>
+                </div> -->
+
+            </nav>
+            
+            
+        </header>
+            
+
+        {% block content %}
+        {% endblock content %}
+        <footer>
+            <div id="footerMain">
+                <div id="information">
+                    <a href="" class="info">Reguli</a>
+                    <a href="" class="info">Feedback</a>
+                    <a href="" class="info">Despre Noi</a>
+                    <a href="" class="info">Politica de confidentialitate</a>
+                </div>
+                <div id="socials"> 
+                    <a href=""><i class="fa-brands fa-facebook socialIcon"></i></a>
+                    <a href=""><i class="fa-brands fa-instagram socialIcon"></i></a>
+                    <a href=""><i class="fa-brands fa-youtube socialIcon"></i></a>
+                    <a href=""><i class="fa-brands fa-twitter socialIcon"></i></a>
+                
+                </div>
+            </div>
+        </footer>
+
+        <!-- Bootstrap JavaScript Bundle with Popper -->
+         <script >
+            //js for navbar transitions
+
+            //2nd
+            
+            let prevScrollpos = window.pageYOffset;
+            window.onscroll = function() {
+            let currentScrollPos = window.pageYOffset;
+            if (prevScrollpos > currentScrollPos || currentScrollPos <= 60) {
+                document.getElementById("header").style.top = "0";
+            } else {
+                document.getElementById("header").style.top = "-120px";
+            }
+            prevScrollpos = currentScrollPos;
+            };
+
+            
+            
+
+
+
+        </script>
+
+        
+
+    </body>
+</html>
+    

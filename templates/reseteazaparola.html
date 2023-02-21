@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+
+{% block head %}
+    <link href="{{ url_for('static', filename='reseteazaparola.css') }}" type="text/css" rel="stylesheet">
+{% endblock head %}
+
+
+{% block content %}
+        <div id="main">
+            <div id="container">
+                <form action="" method="post" id="form">
+                    {% if not(exceptie) %}
+                        <label for="password">Parola Veche</label>
+                        <input type="password" name="password" id=""><br>
+                    {% endif %}
+                    <label for="new_pass">Parola noua</label>
+                    <input type="password" name="new_pass" id="" minlength="8"><br>
+                    <label for="conf_pass">Confirmare parola</label>
+                    <input type="password" name="conf_pass" id=""><br>
+                    <button type="submit" id="confirmare">Confirmare</button>
+                </form>
+            </div>    
+        </div>
+{% endblock content %}

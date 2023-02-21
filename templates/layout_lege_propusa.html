@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='layout_lege_propusa.css') }}" >
+{% endblock head %}
+
+{% block content %}
+
+    <div id="all">
+        <div id="title">
+            <h1>{{titlu}}</h1>
+        </div>
+
+        <div id="main">
+            <div id="submain">
+                <div id="elementeleLegii">
+
+                    <div id="text">
+                        <p>{{descriere}} Lorem ipsum dolor sit jiv vijsegbi ywfwoign voignv kejapfn vamet consectetur adipisicing elit. Aspernatur modi, esse libero deleniti quasi aut placeat laborum explicabo. Veniam, beatae? Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, cum.</p>
+                    </div>
+                    
+                    <div id="data-user"> 
+
+                        <div id="data">
+                            <p>{{data}}</p>
+                        </div>
+
+                        <div id="username">
+                            <a href=""><p>@{{username}}</p></a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div id="voturi">
+
+                <div id="pcn">
+                    <strong>Voturi:</strong>
+                    <strong id="pro">Pro:  <span id="proNumber">10{{pro}}</span></strong>
+                    <strong id="contra">Contra:  <span id="contraNumber">2{{contra}}</span></strong>
+                    <strong id="neutre">Neutre:  <span id="neutruNumber">3{{neutru}}</span></strong>
+                </div>    
+                
+                <div class="pieChart"></div>
+
+            </div>   
+
+        </div>
+
+        <button class="button1" id="button1">Voteaza</button>
+
+    </div>
+
+    <!--Modal section!-->
+
+    <div class="modal">
+        <div class="modal-content">
+            <i id="close" class="material-icons">close</i>
+            <h1 id="votenow">Voteaza acum</h1>
+            <form id="form" action="">
+                <label for="phone">
+                    Va rugam introduceti numarul dvs de telefon:
+                </label>
+                <input type="tel" name="phone" id="phone" pattern="[0-9]{9}" required>
+                <button type="submit" class="button2" id="button2">Trimite</button> 
+            </form>
+        </div>
+    </div>
+
+
+    <!--JavaScript-->
+    <script>
+        document.getElementById('button1').addEventListener('click', function() {
+            document.querySelector('.modal').style.display = 'flex';
+        });
+
+        document.getElementById('close').addEventListener('click', function() {
+            document.querySelector('.modal').style.display = 'none';
+        });
+
+
+    </script>
+
+{% endblock content %}

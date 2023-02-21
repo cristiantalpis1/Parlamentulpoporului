@@ -1,0 +1,49 @@
+<!--Prima functie face ca sa conecteze layout.html cu index.html-->
+
+{% extends "layout.html" %}
+
+<!--"block head" si "block content" vor lua locul la blocurile libere cu acelasi din layout.html-->
+
+{% block head %}
+    <link href="{{ url_for('static', filename='styles.css') }}" type="text/css" rel="stylesheet">
+{% endblock head %}
+
+
+{% block content %}
+    
+  
+    <div id="main">
+        <h2 id="tit">Proiecte de legi</h2>
+        {%if eror!=''%}
+            <h2>{{eror}}</h2>
+        {%endif%}
+            <!-- For loop logic of jinja template -->
+        {%if session['ver']=='2'%}
+            <div id="legi">
+                {%for i in range(len-1, -1, -1)%}
+                <a href="{{url_for('acasa',id=ids[i][0])}}">
+                    <div class="lege">
+                        <p>{{titles[i][0]}}</p>
+                    
+                    </div>
+                </a>
+                {%endfor%}
+            </div>
+        {% else %}
+            <div id="legi">
+                {%for i in range(len-1, len-(b*10)-1, -1)%}
+                <a href="{{url_for('acasa',id=ids[i][0])}}">
+                    <div class="lege">
+                        <p>{{titles[i][0]}}</p>
+                    </div>
+                </a>
+                {%endfor%}
+            </div>
+            <div id="divMore">
+                <a href="{{url_for('acasa')}}"><button id="maiMulte" >Mai Multe</button></a>
+            </div>    
+        {%endif%}
+    </div>                                  
+        
+{% endblock content %}
+

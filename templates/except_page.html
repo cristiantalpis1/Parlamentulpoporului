@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+
+{% block head %}
+    <link href="{{ url_for('static', filename='except_page.css') }}" type="text/css" rel="stylesheet">
+{% endblock head %}
+
+
+{% block content %}
+    <div id="h1">
+        <h1>Ups...A aparut o eroare! Reincarcati pagina sau incercati mai tarziu</h1>
+    </div>
+    <div id="error_msg">
+        <p>Daca aceasta eroare persista, reportati aceasta problema</p>
+    </div>
+    <div>
+        <a href="#">Contact us</a>
+    </div>
+    <div id="link">
+        <a href="{{url_for('acasa')}}">Inapoi</a>
+    </div>
+{% endblock content %}

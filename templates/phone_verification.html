@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+
+{% block head %}
+    <link href="{{ url_for('static', filename='email_verification.css') }}" type="text/css" rel="stylesheet">
+{% endblock head %}
+
+
+{% block content %}
+    <div id="all">  
+        <div id="main" class="main">
+            <h1>Verificare telefon</h1>
+            <p>Pe numarul de telefon {{phone}} am trimis un cod de 4 cifre. Inserati-l in campul rezervat pentru a verifica telefonul dumneavostra!</p>
+            <form action="{{url_for('sms')}}" method="post">
+                <label for="otp">Codul de 4 cifre: </label><br>
+                <input type="text" name="otp" id="otp" placeholder="123456">
+                <button type="submit" id="button">Verifica</button>
+            </form>
+
+        </div>
+    </div>  
+{% endblock content %}

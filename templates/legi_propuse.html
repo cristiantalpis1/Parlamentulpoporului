@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='legi_propuse.css') }}" >
+{% endblock head %}
+
+
+{% block content %}
+
+    <div id="main">
+        <div id="flex">
+            
+            <h1 id="tit">Legi propuse</h1>
+            <a href="{{url_for('propune_legi')}}" id="propune">Propune o lege</a>
+    
+        </div>
+        <div id="legi">
+            {% for n in range(nr-1, -1, -1) %}
+            <a href="{{url_for('legi_propuse',titlu=titlu[n][0])}}">
+                <div class="lege">
+                    <p class="p">{{ titlu[n][0] }}</p>
+                    <p class="p">{{ username[n][0] }}</p>
+                    <p class="p">{{ data[n][0] }}</p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %} 

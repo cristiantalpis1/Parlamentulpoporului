@@ -1,0 +1,35 @@
+
+{% block head %}    
+    <link href="{{ url_for('static', filename='login.css') }}" type="text/css" rel="stylesheet">
+{% endblock head %}
+
+
+{% block content %}
+    <div id="main">
+        <div id="container">
+            <a href="{{ url_for('acasa') }}"><img src="{{url_for('static',filename='logoNouPPBlack.png')}}" id="logo"></a>
+            <h1>Autentificare</h1>
+            <form action="" method="post"id="form">
+                <label for="user" class="label">Nume utilizator/Email</label>
+                <input type="text" autocapitalize="off" name="user" id="" class="input" maxlength="75">
+                <label for="password" class="label">Parola</label>
+                <input type="password" name="password" id="" class="input">
+                <button type="submit" id="autentificare">Autentificare</button>
+            </form>
+            <a href="{{ url_for('forgot_password') }}" id="aup">Ai uitat parola?</a>
+            <span id="nuaicont">Nu ai cont?<a href="{{ url_for('inregistrare') }}" id="inregistreazate">Inregistreaza-te</a></span>
+        </div>
+        <div id="text">
+            Consideri ca deputatii nu mai reprezinta opinia ta?
+            Solutia este votul online asupra proiectelor de legi dezbatute in legislativ.
+            Ulterior poti compara votul tau cu cel al deputatilor, vazand daca coincide sau difera.
+            Hai sa revolutionam politicul, inlocuind democratia reprezentativa cu cea directa.
+            Fiecare cetatean poate deveni e-deputat in <b>Parlamentul Poporului</b>.
+            Fii printre primii care schimba politica moldoveneasca.
+        </div> 
+    </div>   
+    
+    <div>
+        {{e}}
+    </div>
+{% endblock content %}

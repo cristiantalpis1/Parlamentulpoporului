@@ -1,0 +1,289 @@
+{% extends "layout.html" %}
+
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='layout_lege.css') }}" >
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        pro= {{ pro | tojson }}
+        contra={{ contra | tojson }}
+        neu= {{ neu | tojson }}
+        console.log(neu)
+        pro1=parseInt(pro)
+        cont1=parseInt(contra)
+        neu1=parseInt(neu)
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ["Pro: "+pro,    pro1],
+          ['Contra: '+contra,      cont1],
+          ['Neutri: '+neu,  neu1],
+        ]);
+
+        var options = {
+          title: 'Lectura 1',
+          titleTextStyle: {
+                fontSize: 30,
+                bold: true,
+            },
+        
+          colors: ['#00e500', 'red', 'blue'],
+          legend: {
+                textStyle: {
+                    fontSize: 16,
+                    }
+          },
+          width: 320,
+          height: 300,
+          chartArea: {
+            top: 10,
+            bottom: 10,
+            left: 10,
+            right: 10,
+        },
+            
+        
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+  
+        function drawChart() {
+  
+          var data = google.visualization.arrayToDataTable([
+            ['Task', 'Hours per Day'],
+            ['Pro: 19',     55],
+            ['Contra: 10',      0],
+            ['Neutri: 3',  46],
+          ]);
+  
+          var options = {
+          title: 'Lectura 2',
+          titleTextStyle: {
+                fontSize: 30,
+                bold: true,
+            },
+        
+          colors: ['#00e500', 'red', 'blue'],
+          legend: {
+                textStyle: {
+                    fontSize: 16,
+                    }
+          },
+          width: 320,
+          height: 300,
+          chartArea: {
+            top: 10,
+            bottom: 10,
+            left: 10,
+            right: 10,
+        },
+        };
+  
+          var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+  
+          chart.draw(data, options);
+        }
+      </script>
+      <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+  
+        function drawChart() {
+            pro_pop={{ pro_pop | tojson }}
+            con_pop={{ con_pop | tojson }}
+            neu_pop={{ neu_pop | tojson }}
+          var data = google.visualization.arrayToDataTable([
+            ['Task', 'Hours per Day'],
+            ['Pro: '+pro_pop.toString(),     pro_pop],
+            ['Contra: '+con_pop.toString(),      con_pop],
+            ['Neutri: '+neu_pop.toString(),  neu_pop],
+          ]);
+  
+          var options = {
+          title: 'Lectura 1',
+          titleTextStyle: {
+                fontSize: 30,
+                bold: true,
+            },
+        
+          colors: ['#00e500', 'red', 'blue'],
+          legend: {
+                textStyle: {
+                    fontSize: 16,
+                    }
+          },
+          width: 320,
+          height: 300,
+          chartArea: {
+            top: 10,
+            bottom: 10,
+            left: 10,
+            right: 10,
+        },
+        };
+  
+          var chart = new google.visualization.PieChart(document.getElementById('piechart3'));
+  
+          chart.draw(data, options);
+        }
+      </script>
+    
+{% endblock head %}
+
+{% block content %}
+
+    <div id="all">
+
+        <h1 id="title">Lege</h1>
+
+        <div id="main">
+            <div id="video">
+              https://youtu.be/IujQP_KE3L8
+            </div>
+            <div id="descriere">{{titlu}}</div>
+        </div>
+
+        <div id="voturiTitleContainer">
+            <div id="voturiTitle">Voturi</div>
+            <div class="line"></div>
+        </div>    
+            
+        <div id="voturiContainer">
+          <div class="subVoturiContainer">
+              <div class="piechartLabel">Votul Parlamentului</div>
+
+              <div id="piechart1" class="piechart" ></div>
+          </div>
+          <div class="subVoturiContainer">
+            <div class="piechartLabel">Votul Poporului</div>
+            
+            <div id="piechart3" class="piechart" ></div>
+          </div>
+        </div>  
+  
+      
+
+        {%if session.get('username')!=None and ok==True %} 
+          <div>
+              
+              <script>
+                  a=''
+                  function val(b){
+                      a=b
+                      
+                  }
+                  function vot(){
+
+                      let text = "Esti sigur de alegerea ta?\n Votul tau este "+a;
+                      if (confirm(text) == true) {
+                          document.getElementById("form1").submit();
+                      }else{
+                          
+                          return false
+                      }
+                  }
+              </script>
+
+              
+              
+          </div>
+                      <div>
+              <button id="voteaza" class="button open-button">Voteaza</button>
+            </div>
+            
+            <dialog class="modal" id="modal">
+              <form action="" method="post" id="form1" onclick="return vot()">
+                <button id="pro1" class="buttonVote" onclick="val('Pro')"><a href="{{url_for('pro')}}">Pro</a></button>
+                <button id="contra1" class="buttonVote" onclick="val('contra')"><a href="{{url_for('contra')}}">Con</a></button>
+                <button id="neutru1" class="buttonVote" onclick="val('neutru')"><a href="{{url_for('neutru')}}">Neu</a></button>
+              </form>
+              <button class="button close-button">close modal</button>
+            </dialog>
+        {% elif session.get('username')!=None and ok==True %}
+          <div id="votultau">
+            <h2>Ai votat </h2>
+          </div>
+        {%endif%}
+
+        {%if session.get('username')== None %}
+            <div>
+                <a href="{{url_for('autentificare')}}"><button id="voteaza">Voteaza</button></a>
+            </div>
+        {%endif%}
+    </div>
+
+
+    <!--script pentru dialog-->
+    <script>
+      const modal = document.querySelector("#modal");
+      const openModal = document.querySelector(".open-button");
+      const closeModal = document.querySelector(".close-button");
+
+      openModal.addEventListener("click", () => {
+        modal.showModal();
+      });
+
+      modal.addEventListener('click', (e) =>{
+        if(e.target.nodeName === "DIALOG"){
+          modal.close();
+        }
+      })
+
+      closeModal.addEventListener("click", () => {
+        modal.setAttribute("closing", "");
+
+        modal.addEventListener(
+          "animationend",
+          () => {
+            modal.removeAttribute("closing");
+            modal.close();
+          },
+          { once: true }
+        );
+      });
+    </script>
+    
+<!--script pentru functionarea videoclipului-->
+    <script type="text/javascript">
+      function toSeconds(timeStr) {
+        const [hours, minutes, seconds] = timeStr.split(':').map(Number);
+        return hours * 3600 + minutes * 60 + seconds;
+      }
+
+      let timeStamp = toSeconds('00:01:56'); 
+
+      timeStamp.toString
+
+      let url = document.getElementById("video").innerHTML;
+
+      var filterTextArea = function(text) {
+        text = text.replace(/(<([^>]+)>)/ig, '');
+        var re = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?([\w\-]{10,12})(?:&feature)?(?:[\w\-]{0})?/g;
+        var iframe = '<iframe width="460" height="260" src="http://www.youtube.com/embed/$1?start=" frameborder="0" allowfullscreen></iframe>';
+        text = iframe.replace('$1', text.split(re)[1]);
+        let newText = text.replace('?start=', '?start=' + timeStamp);
+        return newText;
+      };
+
+      let ifr = document.getElementById("video");
+
+      let newUrl = filterTextArea(url);
+
+      newUrl.replace(/[\[\]']+/g,'');
+
+      ifr.innerHTML = newUrl;
+    </script>
+
+{% endblock content %}
+

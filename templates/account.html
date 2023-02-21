@@ -1,0 +1,75 @@
+
+
+
+{% block head %}
+    <link href="{{ url_for('static', filename='account.css') }}" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+{% endblock head %}
+
+
+{% block content %}
+
+    <div id="main">
+        <div id="leftSide">
+            
+            <div id="container">
+                <a href="{{ url_for('acasa') }}" id="home"><img src="{{url_for('static',filename='logoNouPP.png')}}" id="logo"></a>
+                <div id="title">Informatii Personale</div>
+                <div id="boxes">
+                    <form action="{{url_for('account')}}" method="post" id="form">
+                        
+                        <label for="username" class="label">Nume utilizator</label>
+                        <input type="text" name="user" pattern="^[a-zA-Z0-9._]+$" id="" class="input" value="{{ session.get('username') }}" minlength="3" maxlength="25" required>
+
+                        <label for="email" class="label">Email</label>
+                        <input type="text" name="email" value="{{ session.get('email') }}" id="" class="input" required>
+
+                        <button type="submit" id="update">Actualizati</button>
+                    </form>
+                    <div id="links">
+                        <a href="{{ url_for('reseteaza_parola') }}">Reseteaza Parola</a>
+                        <a href="{{ url_for('logout') }}">Iesire</a>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>  
+        
+        <div id="rightSide">
+            <div id="rightMain">
+                <div id="statistica">Statistica</div>
+                <div id="rightContent">
+                    <div class="nrDeLegiContainer">
+                        <div id="nrDeLegi">Numarul de legi votate: {{tot}}</div>
+                        <div id="voturilePersonale">
+                            <div class="personalVotContainer">
+                                <div id="greenCircle" class="voteCircle"></div>
+                                <div id="voturiPro" >Pro: {{a}}</div>
+                            </div>
+                            <div class="personalVotContainer">
+                                <div id="redCircle" class="voteCircle"></div>
+                                <div id="voturiContra">Contra: {{b}}</div>
+                            </div>
+                            <div class="personalVotContainer">
+                                <div id="blueCircle" class="voteCircle"></div>
+                                <div id="voturiNeutre">Neutre: {{c}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="compatibilitate">
+                        <div class="textAbovePieCharts">Compatibilitate cu ceilalti utilizatori</div>
+                        <div class="textAbovePieCharts">Compatibilitate cu parlamentarii</div>
+                        <div class="pieContainer">
+                            <div class="pie" style="--p:{{stat_pop}}">{{stat_pop}}%</div>
+                        </div>
+                        <div class="pieContainer">
+                            <div class="pie" style="--p:{{stat_par}}">{{stat_par}}%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+{% endblock content %}

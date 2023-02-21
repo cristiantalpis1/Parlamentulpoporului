@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina Admin</title>
+</head>
+<body>
+    <form action="" method="post">
+        <label for="file1">Alege fisierul excel (.xlsx)</label>
+        <input id="file1" name="file1" type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+        <button type="submit" onclick="myFunction()">Trimite</button>
+        
+    </form>
+    <a href="{{ url_for('logout') }}">Iesire</a>
+    <script>
+        function myFunction() {
+          var x = document.getElementById("file1").value;
+          document.getElementById("demo").innerHTML = x;
+          
+        }
+    </script>
+</body>
+</html>

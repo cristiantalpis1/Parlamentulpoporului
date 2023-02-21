@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+
+{% block head %}
+    <link href="{{ url_for('static', filename='adaugaProiect.css') }}" type="text/css" rel="stylesheet">
+{% endblock head %}
+
+
+{% block content %}
+    <hr>
+    <div id="main">
+        <h1>Adauga Proiect Propriu</h1>
+        <div>
+            <textarea name="Proiect" id="text" cols="60" rows="10"></textarea>
+        </div>
+
+        <div >
+            <button type="submit" id="submit">Trimite</button>
+        </div>
+    </div>
+{% endblock content %}
