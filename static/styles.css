@@ -1,0 +1,318 @@
+:root{
+    --blue: rgb(12, 12, 38); 
+    --gray: rgb(112, 112, 112);
+    --red: rgb(208, 9, 9);
+}
+
+body{
+    font-family:sans-serif;
+    background-color: white;
+
+}
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+*, *::before, *::after{
+    box-sizing: border-box;
+}
+
+header{
+    display: flex;
+    background-color: rgba(12, 12, 38, 0.95);
+    border-bottom: 3px solid var(--blue);
+    z-index: 100;
+    width: 100%;
+    height: 14vh;
+    align-items: center;
+    top: 0;
+    position: fixed;
+    transition: top 0.5s ease-in-out;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+#logo{
+    width: 11.25rem;
+    margin-left: 2.5rem;
+}
+
+#nav{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    text-decoration: none;
+    width: 100%;
+    gap: 5rem;
+
+}
+
+#cautare{
+    font-size:1.5rem;
+    background-color: rgb(255, 255, 255);
+    border-radius: 30px;
+    border: 3px solid transparent;
+    padding-left: 0.5em;
+    color: rgb(64, 64, 64);
+    padding-block: .2rem;
+    outline: none;	
+    transition: all 0.3s ease-in-out;
+}
+
+#cautare:focus{
+    background-color: rgb(251, 230, 230);
+    color: black;
+
+}
+
+#cautare:hover{
+    background-color: rgb(251, 230, 230);
+}
+
+#cautareForm{
+    display: flex;
+    align-items:center;
+}
+
+#searchButton{
+    background-color: transparent;
+    border:none;
+    color:white;
+    transition: all 0.3s ease-in-out;
+    margin-top: 5px;
+}
+
+#searchButton i{
+    font-size: 3.5em;
+}
+
+#searchButton:hover{
+    color: var(--red);
+}
+
+.account_icon{
+    font-size: 2.5rem;
+    margin-right: 2rem;
+    transition: all 0.3s ease-in-out;
+}
+
+
+header a{
+    color:white;
+    text-decoration: none;
+}
+header a:hover{
+    color:var(--red);
+    text-decoration: none;
+}
+
+
+/*nav-bar end*/
+
+#main{
+    margin-inline: 10vh;
+    margin-bottom: 10vh;
+    margin-top: 20vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+#tit{
+    text-align: center;
+    font-size: 3.75rem;
+    font-weight: 500;
+    color:#0C1836;
+    text-shadow: 2px 2px 5px#0c18369c;
+    padding-bottom: 0.625rem;
+    border-bottom: 4px solid #0C1836;
+}
+
+
+.lege{
+    font-size: 1.5rem;
+    margin: 0px;
+    height: 100%;
+    padding: 1.5rem;
+    border-radius: 2px;
+    color: black;
+    background-color: white;
+    box-shadow: 0 0 13px #0b2e8689;
+    transition: all 0.4s ease-in-out;
+    line-height: 1.6em;
+    
+}
+.lege:hover{
+    text-decoration: none;
+    transform: translateY(-5px);
+    transform: scale(1.025);
+}
+
+.lege p{
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 0;
+    text-decoration: none;
+    color: black;
+}
+
+#legi a{
+    text-decoration: none;
+    color: black;
+}
+
+#legi{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 10vh;
+}
+
+
+
+#divMore{
+    display: flex;
+    justify-content: center;
+}
+
+#maiMulte{
+    font-size: 2rem;
+    border: 3px solid var(--blue);
+    background-color: transparent;
+    border-radius: 2px;
+    padding: 10px 20px;
+    color: var(--blue);
+    align-self: center;
+    transition: all 0.2s ease-in-out;
+}
+
+#maiMulte:hover{
+    color: white;
+    background-color: var(--blue);
+    text-decoration: none;
+}
+
+#maiMulte:focus{
+    cursor: pointer;
+    border-color: #0c1836a8;
+    background-color:rgb(177, 7, 7);
+    color:white;
+}
+
+
+
+footer{
+    font-size: 1.1rem;
+    background-color: var(--blue);
+    padding: 6vh;
+}
+
+#footerMain{
+    display:flex;
+    justify-content: space-between;
+}
+
+#information{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.info{
+    color: rgb(112, 112, 112);
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.info:hover{
+    color:rgb(208, 9, 9);
+}
+
+#socials{
+    display: flex;
+    gap:2rem;
+    align-items: flex-end;
+    
+}
+
+.socialIcon{
+    color:var(--gray);
+    font-size: 2rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.socialIcon:hover{
+    color:var(--red);
+}
+
+/*for different sizes:*/
+@media screen and (max-width:50em){
+
+    header{
+        height: 80px;
+    }
+
+    #logo{
+        width: 7rem;
+        margin-left: 1rem;
+    }
+    #cautare{
+        font-size: 1em;
+        width: 6em;
+        transition: all 0.3s ease-in-out;
+        height: 2em;
+    }
+    #main{
+        margin-top: 1vh;
+
+    }
+
+    #cautare:focus{
+        width:12em;
+    }
+
+    #searchButton{
+        display: none;
+    }
+
+    #nav{
+        gap:1em;
+    }
+
+    .account_icon{
+        font-size: 1.7em;
+    }
+
+    #legi{
+        grid-template-columns: 1fr;
+    }
+
+    #tit{
+        font-size: 2rem;
+    }
+
+    #main{
+        margin-inline: 10px;
+        margin-block: 15vh;
+    }
+    #legi{
+        margin:3ch;
+    }
+    .lege{
+        font-size: 1em;
+        padding-block: 1em;
+    }
+
+    #socials{
+        flex-direction: column;
+        align-items: center;
+        gap: 1em;
+    }
+    .socialIcon{
+        font-size: 1em;
+    }
+}

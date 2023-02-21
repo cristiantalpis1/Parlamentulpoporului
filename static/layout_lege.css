@@ -1,0 +1,535 @@
+:root{
+    --blue: rgb(12, 12, 38); 
+    --gray: rgb(112, 112, 112);
+    --red: rgb(208, 9, 9);
+    --green: rgb(0, 229, 0);
+}
+
+
+
+body{
+    font-family:sans-serif;
+    background-color: white;
+
+}
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+*, *::before, *::after{
+    box-sizing: border-box;
+}
+
+header{
+    display: flex;
+    background-color: rgba(12, 12, 38, 0.95);
+    border-bottom: 3px solid var(--blue);
+    z-index: 100;
+    width: 100%;
+    height: 14vh;
+    align-items: center;
+    top: 0;
+    position: fixed;
+    transition: top 0.5s ease-in-out;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+#logo{
+    width: 11.25rem;
+    margin-left: 2.5rem;
+}
+
+#nav{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    text-decoration: none;
+    width: 100%;
+    gap: 5rem;
+
+}
+
+#cautare{
+    font-size:1.5rem;
+    background-color: rgb(255, 255, 255);
+    border-radius: 30px;
+    border: 3px solid transparent;
+    padding-left: 0.5em;
+    color: rgb(64, 64, 64);
+    padding-block: .2rem;
+    outline: none;	
+    transition: all 0.3s ease-in-out;
+}
+
+#cautare:focus{
+    background-color: rgb(251, 230, 230);
+    color: black;
+
+}
+
+#cautare:hover{
+    background-color: rgb(251, 230, 230);
+}
+
+#cautareForm{
+    display: flex;
+    align-items:center;
+}
+
+#searchButton{
+    background-color: transparent;
+    border:none;
+    color:white;
+    transition: all 0.3s ease-in-out;
+    margin-top: 5px;
+}
+
+#searchButton i{
+    font-size: 3.5em;
+}
+
+#searchButton:hover{
+    color: var(--red);
+}
+
+.account_icon{
+    font-size: 2.5rem;
+    margin-right: 2rem;
+    transition: all 0.3s ease-in-out;
+}
+
+
+header a{
+    color:white;
+    text-decoration: none;
+}
+header a:hover{
+    color:var(--red);
+    text-decoration: none;
+}
+
+
+/*nav-bar end*/
+
+#all{
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    align-items: center;
+    height: 100vh auto;
+    background-color: rgb(255, 255, 255);
+    margin-inline: 10vh;
+    margin-top: 0;
+    border-radius: 2px;
+    margin-bottom: 10vh;
+    margin-top: 25vh;
+
+}
+
+#title{
+    font-size: 40px;
+    color: black;
+    text-align:center;
+    width: 100%;
+    border-bottom: 3px solid black ;
+    white-space: normal;
+    word-wrap: break-word;
+
+}
+
+#main{
+    width:100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#descriere{
+    font-size: 20px;
+    color:black;
+    max-width: 460px;
+}
+
+#video {
+    height:fit-content;
+}
+
+iframe{
+    max-width:460px;
+    box-shadow: 0px 5px 15px 3px rgba(0, 0, 0, 0.208);
+}
+
+#voturi{
+    justify-self: center;
+    text-align: center;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.line{
+    height: 2px;
+    width: 100%;
+    background-color: black;
+}
+  
+#voturiTitleContainer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+  
+#voturiTitle{
+    padding-inline:10px;
+    width: fit-content;
+    font-size: 40px;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    z-index: 2;
+    display: block;
+    margin-left: 10vh;
+    position: absolute;
+}
+
+#voturiContainer{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.subVoturiContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.piechart{
+    width: 320px;
+    height: 250px;
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: 0px 5px 15px 3px rgba(0, 0, 0, 0.208);
+    transition: all 0.4s ease-in-out;
+}
+  
+.piechart:hover{
+    transform: translateY(-5px);
+    transform: scale(1.025);
+}
+  
+.piechartLabel{
+    font-size: 30px;
+    justify-self: center;
+    padding-inline:10px ;
+}
+
+#voteaza{
+    font-size: 30px;
+    border: 3px solid var(--blue);
+    background-color: transparent;
+    border-radius: 2px;
+    padding: 10px 20px;
+    color: var(--blue);
+    align-self: center;
+    transition: all 0.2s ease-in-out;
+}
+
+#voteaza:hover{
+    color: white;
+    background-color: var(--blue);
+    text-decoration: none;
+}
+
+#voteaza:focus{
+    cursor: pointer;
+    border-color: #0c1836a8;
+    background-color:var(--red);
+    color:white;
+}
+
+#form1{
+    display: flex;
+    gap: 20px;
+}
+
+.buttonVote{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  
+}
+
+.buttonVote:hover{
+    transform: scale(1.050);
+  }
+
+.buttonVote a{
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+#pro1{
+    background-color: var(--green);
+
+}
+
+#pro1:hover{
+    box-shadow: 0px 5px 15px 3px var(--green);
+}
+
+#contra1{
+    background-color: red;
+
+}
+
+#contra1:hover{
+    box-shadow: 0px 5px 15px 3px red;
+}
+
+#neutru1{
+    background-color: blue;
+
+}
+
+#neutru1:hover{
+    box-shadow: 0px 5px 15px 3px blue;
+}
+
+
+
+footer{
+    font-size: 18px;
+    background-color: var(--blue);
+    padding: 6vh;
+}
+
+#footerMain{
+    display:flex;
+    justify-content: space-between;
+}
+
+#information{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.info{
+    color: rgb(112, 112, 112);
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.info:hover{
+    color:rgb(208, 9, 9);
+}
+
+#socials{
+    display: flex;
+    gap:30px;
+    align-items: flex-end;
+    
+}
+
+.socialIcon{
+    color:var(--gray);
+    font-size: 30px;
+    transition: all 0.2s ease-in-out;
+}
+
+.socialIcon:hover{
+    color:var(--red);
+}
+
+
+/*pentru dialog*/
+
+.modal {
+    box-shadow: 0 0 0 100vw rgb(0 0 0 / 0.5);
+    background: #fff;
+    color: #222;
+    border: 0;
+    border-radius: 0.25rem;
+    padding: 0;
+}
+  
+.modal::backdrop {
+    background: rgb(0 0 0 / 0.5);
+    opacity: 0;
+}
+
+.modal[open] {
+    animation: slide-up 1000ms forwards, fade-in 500ms forwards;
+}
+/* */.modal[open]::backdrop {
+    animation: fade-in 500ms forwards;
+}
+
+.modal[closing] {
+    display: block;
+    pointer-events: none;
+    inset: 0;
+    animation: fade-out 500ms forwards;
+}
+
+/* */.modal[closing]::backdrop {
+    animation: fade-out 500ms forwards;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes slide-up {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+/* extra styling */
+
+.modal {
+    max-width: 50ch;
+}
+
+
+
+
+.button:hover,
+.button:focus {
+    background:red;
+}
+
+
+/*for different sizes:*/
+@media screen and (max-width:50em){
+    
+    body{
+        margin: 0;
+        padding: 0;
+    }
+
+    header{
+        height: 80px;
+    }
+
+    #logo{
+        width: 7rem;
+        margin-left: 1rem;
+    }
+    #cautare{
+        font-size: 1em;
+        width: 6em;
+        transition: all 0.3s ease-in-out;
+        height: 2em;
+    }
+    #main{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-inline: 60px;
+        gap: 10px;
+    }
+
+    #cautare:focus{
+        width:12em;
+    }
+
+    #searchButton{
+        display: none;
+    }
+
+    #nav{
+        gap:1em;
+    }
+
+    .account_icon{
+        font-size: 1.7em;
+    }
+
+    #tit{
+        font-size: 2rem;
+    }
+
+    #voturiContainer{
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    #socials{
+        flex-direction: column;
+        align-items: center;
+        gap: 1em;
+    }
+    .socialIcon{
+        font-size: 1em;
+    }
+
+    #voturiTitle{
+        text-align: center;
+        left: 0;
+        right: 0;
+        margin: 0;
+    }
+
+    .piechartLabel{
+        font-size: 1.2em;
+    }
+
+
+    #video{
+        width: 350px;
+        height: 195px;
+    }
+
+    iframe{
+        width: inherit;
+        height: inherit;
+    }
+
+
+    #descriere{
+        font-size: 1em;
+        text-align: center;
+    }
+
+    #all{
+        margin-top: 10vh;
+        margin-inline:0;
+        gap: 40px;
+    }
+
+    #voteaza{
+        font-size: 1em;
+    }
+}

@@ -1,0 +1,182 @@
+:root{
+    --blue: rgb(12, 12, 38); 
+}
+
+body{
+    font-family:sans-serif;
+    background-color: white;
+    background-image: url('whiteBackground.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    
+      
+      
+}
+
+#logo{
+    width: 200px;
+    height: 100%;
+    margin-block: 20px;
+}
+
+
+#container{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    font-size: 25px;
+    padding-top: 10px;
+    border-radius: 15px;
+    box-shadow:0 0 10px rgba(0, 0, 0, 0.293);
+    width: 45vh;
+}
+
+#form{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-block: 10px;
+}
+
+#main{
+    height: 100vh;
+    display:flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+}
+
+.label{
+    color: rgb(125, 125, 125);
+    align-self: flex-start;
+    margin-top: 10px;
+}
+
+.input{
+    border-radius: 0.4em;
+    padding-left: 5px;
+    border: 2px solid lightgray;
+    font-size: 25px;
+    width: 11em;
+}
+
+h1{
+    color: black;
+    font-weight: 600;
+    font-size: 40px;
+    border-block: 3px solid rgb(225, 225, 225);
+    text-align: center;
+    margin: 0;
+    width: 100%;
+    padding-block: 5px;
+    margin-block: 5px;
+}
+
+
+#inregistreazate{
+    color: rgb(13, 190, 239);
+    border: 2px solid rgb(13, 190, 239);
+    background-color: transparent;
+    border-radius: 10px;
+    font-size: 20px;
+    padding-block: 5px;
+    padding-inline: 15px;
+    transition: all 0.2s ease-in-out;
+    margin-top: 10px;
+}
+#inregistreazate:hover{
+    background-color: rgba(43, 230, 227, 0.272);
+}
+
+#autentificare{
+    text-align: center;
+    font-size: 17px;
+    padding-block: 7px;
+    width: 100%;
+    color: black;
+    border-top: 3px solid rgb(225, 225, 225);
+}
+
+
+#autentificate{
+    color: rgb(13, 190, 239) ;
+}
+#autentificate:hover{
+    text-decoration: underline;
+}
+
+#text{
+    color: black;
+    font-size: 1em;
+    max-width: 50vw;
+    text-align: center;
+    line-height: 50px;
+}
+
+.eroare{
+    font-size: 10px;
+    color: red;
+    align-self: flex-start;
+    margin:5px;
+    display: none;
+
+}
+
+.eroareInput{
+    border: 2px solid red;
+}
+
+@media screen and (max-width: 1000px){
+    #main{
+        flex-direction: column;
+        height: auto;
+        width: 100%;
+        position: relative;
+        gap: 60px;
+        padding-block: 60px;
+    }
+
+    #container{
+        width: 90%;
+        justify-self: center;
+    }
+
+    #text{
+        max-width:auto;
+        font-size: 3em;
+        max-width: 90vw;
+    }
+
+    #logo{
+        width: 600px;
+    }
+
+    h1{
+        font-size: 4em;
+    }
+
+    .label{
+        font-size: 2.5em;
+    }
+
+    .input{
+        font-size: 3em;
+    }
+
+    
+    #inregistreazate{
+        font-size: 2em;
+        border-radius: 20px;
+        padding-inline: 1em;
+        padding-block: 0.3em;
+        margin-block: 0.5em;
+    }
+
+    #autentificare{
+        font-size: 2em;
+        padding-block: 0.5em;
+    }
+}
