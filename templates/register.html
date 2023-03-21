@@ -58,18 +58,19 @@
 <!-- ^^  form code  ^^ -->
 
 
+<script>
+    var taken_username = "{{ taken_username }}";
+    if(taken_username){
 
-{% if taken_username %}
-
-    <script>
+    
         let eroare_nume = document.getElementById("eroare_nume");
         eroare_nume.style.display = "block";
         let numeUtilizator = document.getElementById("numeUtilizator");
         numeUtilizator.classList.add("eroareInput")
-    </script>
+    
+    }
 
-{% endif %}
-
+</script>
 {% if taken_email %}
 
     <script>

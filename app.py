@@ -65,7 +65,7 @@ def acasa(id=None):
     else:
         session['id']=id
         content = get_data_by_id("legi", id)
-        print(content)
+        
         titlu = content[0][1]
         if content[0][2] != None and content[0][2] != "nan":
             pro = content[0][2]
@@ -98,18 +98,21 @@ def acasa(id=None):
             neu_pop = 0
 
         ok = None
-
+        
         if session.get("username"):
+            
             id_user=inreg_data("id","username",session['username'])
-            legi_votate_ids=validvot(id_user)
+            
+            legi_votate_ids=validvot(id_user[0])
+            
             ok=True
+            
             id=str(session['id'])
             for id_lege in legi_votate_ids:
                 id_lege = id_lege[0]
                 id_lege = str(id_lege)
                 if id==id_lege:
                     ok=False
-            print(ok)
         
         return render_template("layout_lege.html", titlu=titlu, pro=pro, contra=contra, neu=neu, pro_pop=int(pro_pop), con_pop=int(con_pop), neu_pop=int(neu_pop), ok=ok)
 
@@ -156,22 +159,36 @@ def autentificare():
                 session['username']="Admin"
                 return redirect(url_for("admin"))
             else:
+                eror=""
                 if '@' in user:
                     email = user
                     username = inreg_data("username",'email', email)
+                    if username==None:
+                        eror="Acest email este invalid"
+                    else:
+                        username=username[0]
                 else:
                     username = user
+                    
                     email = inreg_data("email",'username', username)
-                password = request.form.get("password") 
-                eror=""
-                eror = autentificarea(email, username,password)
+                    if email==None:
+                        eror="Acest username este invalid"
+                    else:
+                        email=email[0]
+                    
+                password = request.form.get("password")
+                
+                if eror=="":
+                    eror = autentificarea(str(email), str(username),str(password))
+               
                 if eror=="" :
                     if user=="Admin" or user == 'parlamentulpoporului@gmail.com' and password=="parlamentulpoporului":
                         return redirect(url_for("admin"))
                     else :
                         session["username"] = username
                         session["email"] = email
-                    return redirect(url_for("acasa",user=username))
+                    
+                    return redirect(url_for("acasa"))
     else:
         return redirect(url_for("acasa"))
 
@@ -197,25 +214,30 @@ def account():
             email = gl_email
             username = gl_username
         #return email+"   "+username
+        
         id=id_user(session['username'])
+        
         aux=vot_select(str(id[0][0]),"pro")
         a=len(aux)
+        
         aux=vot_select(str(id[0][0]),"contra")
         b=len(aux)
         aux=vot_select(str(id[0][0]),"neu")
         c=len(aux)
         max1=0
-        max_eu=''
+        max_eu='nici unu'
+        
         if a>b:
             max1=a
             max_eu="pro"
-        else: 
+        elif b>a: 
             max1=b
             max_eu="contra"
         if max1<c :
             max1=c
             max_eu="neutru"
-
+        stat_par=0
+        stat_pop=0
         aux=vot_statistic("legi","max_parlament","pro","nr")
         pro_par=len(aux)
         aux=vot_statistic("legi","max_parlament","contra","nr")
@@ -228,8 +250,8 @@ def account():
         cont_pop=len(aux)
         aux=vot_statistic("vot","vot","neutru","id")
         neu_pop=len(aux)
-        stat_par=0
-        stat_pop=0
+        #return str(a)+"    "+str(b)+"    "+str(max_eu)
+        
         if pro_par+cont_par+neu_par!=0:
             if max_eu=="pro":
                 stat_par=int((pro_par/(pro_par+cont_par+neu_par))*100)
@@ -240,8 +262,8 @@ def account():
             elif max_eu=="neutru":
                 stat_par=int((neu_par/(pro_par+cont_par+neu_par))*100)
                 stat_pop=int((neu_pop/(pro_pop+cont_pop+neu_pop))*100)
-    
-
+        
+            
         return render_template("account.html", email = email, error_em = error_em, error_us = error_us,a=a,b=b,c=c,tot=a+b+c,stat_par=stat_par,stat_pop=stat_pop)
     else:
         return redirect(url_for('autentificare'))
@@ -429,14 +451,16 @@ def cautare():
 @app.route("/verificare-email/<exceptie>" , methods=["GET","POST"])
 def email_verification(exceptie = None):
     global_variables()
-    exceptie = exceptie
     if session.get('username') and exceptie == None:
         return redirect(url_for("acasa"))
     else:
         global email
         msg = Message( subject='OTP', sender='parlamentulpoporului@gmail.com', recipients=[str(email)])
+        print('merge')
         msg.body = str(otp)
+        print(msg)
         mail.send(msg)
+        print('mergeok')
         msg1=str(otp)
         if request.method == "POST":
             otp_form = request.form.get("otp")
@@ -498,9 +522,9 @@ def admin():
 
 @app.route("/acasa/pro" , methods=["GET","POST"])
 def pro():
-    #return  "11"
+    
     a=select(session['id'])
-    #return str(a[0][0])+"      "+(a[0][1])+"     "+str(a[0][2])
+    #return str(a[0][0])+"      "+str(a[0][1])+"     "+str(a[0][2])
     if a[0][0] != None:
         b=int(a[0][0])
     else:
@@ -516,7 +540,7 @@ def pro():
     b=b+1
     
     max1=0
-    vot_max=''
+    vot_max='eu'
     if b>max1 and b!=0:
         max1=b
         vot_max='pro'
@@ -530,9 +554,9 @@ def pro():
     set_vot_popor(vot_max,session['id'])
     set_vot(str(b),session['id'],"pro_popor")
     a1=inreg_data("id",'username',session['username'])
-    print(a)
-    vot_db(a1,session['id'],"pro")
-    print(session['id'])
+    
+    vot_db(str(a1[0]),str(session['id']),"pro")
+    
     return redirect(url_for('acasa',id=session['id']))
 
 @app.route("/acasa/contra" , methods=["GET","POST"])
@@ -567,7 +591,7 @@ def contra():
     set_vot(str(c),session['id'],"contra_popor")
     a1=inreg_data("id",'username',session['username'])
     print(a)
-    vot_db(a1,session['id'],"contra")
+    vot_db(a1[0],session['id'],"contra")
     print(session['id'])
     return redirect(url_for('acasa',id=session['id']))
 
@@ -605,7 +629,8 @@ def neutru():
     set_vot(str(d),session['id'],"neu_popor")
     a1=inreg_data("id",'username',session['username'])
     print(a)
-    vot_db(a1,session['id'],"neutru")
+    vot_db(a1[0],session['id'],"neutru")
+    
     print(session['id'])
     return redirect(url_for('acasa',id=session['id']))
 
@@ -632,7 +657,7 @@ def sms():
     global email
     global passwordh
     account_sid = 'ACfd8f42b2319e166669e54f00026c5def' 
-    auth_token = '25f3902ca1161cd7fd962c3d94a52ccb' 
+    auth_token = '7c81905be90499b96d17d92cfdede82a' 
     client = Client(account_sid, auth_token) 
     message = client.messages.create(  
                                 messaging_service_sid='MGa91850e937131d1178348517855ca354', 
@@ -652,8 +677,8 @@ def sms():
 
         #msg1=str(otp_phone)
         
-        otp2 = request.form.get("otp_phone")
-        #return a+" "+b+" "+c+" "+d+"  "+otp2+"     "+str(otp_phone)  
+        otp2 = request.form.get("otp32")
+        #return a+" "+b+" "+c+" "+d+"  "+str(otp2)+"     "+str(otp_phone)  
         if str(otp2) == str(otp_phone):
             
             register_user(username, email, phone_nr, passwordh)
@@ -666,7 +691,6 @@ def sms():
 
 @app.route('/forgot-password', methods=["GET", "POST"])
 def forgot_password():
-    exceptie = "forgot-password"
     var = None
     error = None
     global email
@@ -674,6 +698,7 @@ def forgot_password():
         email = request.form.get('email')
         var = verificare('email', email)
     if var:
+        exceptie="forgot-password"
         return redirect(url_for('email_verification', exceptie = exceptie))
     else:
         error = "Email inexistent"

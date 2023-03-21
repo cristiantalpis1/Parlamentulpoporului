@@ -3,9 +3,9 @@ from argon2 import PasswordHasher
 verifi=0 
 db = mysql.connector.connect(
     host="localhost",
-    user="parlamen_cristi",
-    passwd="2702ct15?",
-    database="parlamen_legi"
+    user="root",
+    passwd="",
+    database="legi"
 )
 # getting the cursor by cursor() method
 def introdu(tit,pro,contra,neu):

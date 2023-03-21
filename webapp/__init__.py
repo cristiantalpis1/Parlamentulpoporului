@@ -15,4 +15,3 @@ mail = Mail(app)
 otp = randint(100000, 999999)
 otp_phone = randint(1000,9999)
 
-from webapp import routes
