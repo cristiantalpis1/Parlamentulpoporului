@@ -524,7 +524,6 @@ def admin():
 def pro():
     
     a=select(session['id'])
-    #return str(a[0][0])+"      "+str(a[0][1])+"     "+str(a[0][2])
     if a[0][0] != None:
         b=int(a[0][0])
     else:
