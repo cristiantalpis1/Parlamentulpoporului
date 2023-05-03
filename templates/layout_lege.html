@@ -187,24 +187,25 @@
           </form>
         
         </dialog>
-        <form id="addComment">
+        <form action="{{url_for('comentarii')}}" method="post" id="addComment">
           <i class="fa-regular fa-user account_icon"></i>
-          <input type="text" placeholder="Adauga un comentariu..." id="addCommentInput">
+          <input type="text" placeholder="Adauga un comentariu..." id="addCommentInput" name="comentariu">
           <button type="submit" id="addCommentButton">Adauga</button>
         </form>
           <div id="commentSectionContainer">
+            {%for i in range(len-1, -1, -1)%}
             <div class="comment">
               <i class="fa-regular fa-user account_icon"></i>
               <div id="commentRightSide">
                 <div id="commentProfileInfo">
-                  <span id="numeComentator">Ciocan Daniel</span> 
+                  <span id="numeComentator">{{user[i]}}</span> 
                   <span id="dataComentariului">
                     <i class="fa-regular fa-clock"></i>
-                    <span id="time">21/04/2023</span>
+                    <span id="time">{{a[i][3]}}</span>
                   </span>
                 </div>
                 <div id="commentText">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate expedita sequi obcaecati dolorum minima! Obcaecati, quaerat. Quidem doloribus tempore reprehenderit repellendus possimus expedita numquam sequi beatae, laudantium incidunt odio corporis!
+                  {{a[i][4]}}
                 </div>
                 <div id="likes_dislikes">
                   <i class="fa-regular fa-thumbs-up likes" id="likes" onclick="fillLike(this)"></i>
@@ -214,49 +215,8 @@
                 </div>
               </div>
             </div>
-            <div class="comment">
-              <i class="fa-regular fa-user account_icon"></i>
-              <div id="commentRightSide">
-                <div id="commentProfileInfo">
-                  <span id="numeComentator">Ciocan Daniel</span> 
-                  <span id="dataComentariului">
-                    <i class="fa-regular fa-clock"></i>
-                    <span id="time">21/04/2023</span>
-                  </span>
-                </div>
-                <div id="commentText">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate expedita sequi obcaecati dolorum minima! Obcaecati, quaerat. Quidem doloribus tempore reprehenderit repellendus possimus expedita numquam sequi beatae, laudantium incidunt odio corporis!
-                </div>
-                <div id="likes_dislikes">
-                  <i class="fa-regular fa-thumbs-up likes" id="likes" onclick="fillLike(this)"></i>
-                  <span>5</span> 
-                  <i class="fa-regular fa-thumbs-up" id="dislikes" onclick="fillLike(this)"></i>
-                  <span>3</span>            
-                </div>
-              </div>
-            </div>
-            <div class="comment">
-              <i class="fa-regular fa-user account_icon"></i>
-              <div id="commentRightSide">
-                <div id="commentProfileInfo">
-                  <span id="numeComentator">Ciocan Daniel</span> 
-                  <span id="dataComentariului">
-                    <i class="fa-regular fa-clock"></i>
-                    <span id="time">21/04/2023</span>
-                  </span>
-                </div>
-                <div id="commentText">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate expedita sequi obcaecati dolorum minima! Obcaecati, quaerat. Quidem doloribus tempore reprehenderit repellendus possimus expedita numquam sequi beatae, laudantium incidunt odio corporis!
-                </div>
-                <div id="likes_dislikes">
-                  <i class="fa-regular fa-thumbs-up likes" id="likes" onclick="fillLike(this)"></i>
-                  <span id="numarLike">5</span> 
-                  <i class="fa-regular fa-thumbs-up" id="dislikes" onclick="fillLike(this)"></i>
-                  <span id="numarDislike">3</span>            
-                </div>
-              </div>
-            </div>
-        </div>
+            {%endfor%}
+           
     
     </div>
     <!--script pentru commentarii-->

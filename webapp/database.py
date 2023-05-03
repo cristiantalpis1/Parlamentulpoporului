@@ -5,7 +5,7 @@ db = mysql.connector.connect(
     host="localhost",
     user="root",
     passwd="",
-    database="legi"
+    database="parlamem_legi"
 )
 # getting the cursor by cursor() method
 def introdu(tit,pro,contra,neu):
@@ -299,4 +299,21 @@ def vot_statistic(tabel,camp,data,nume):
     return myresult
 
    
+
+def trimis_coment(id_user, id_lege, data, coment):
+  mycursor = db.cursor()
+  insertQuery = "INSERT INTO comentarii(id_user,id_lege, data, comentariu) VALUES ("+id_user+","+id_lege+",'"+data+"','"+coment+"');"
+  
+  mycursor.execute(insertQuery)
+
+  db.commit()
+
+def sortare_comentarii(id_legi):
+    mycursor = db.cursor()
+
+    mycursor.execute("SELECT * FROM comentarii WHERE id_lege ="+id_legi+"")
+
+    myresult = mycursor.fetchall()
+
+    return myresult
 

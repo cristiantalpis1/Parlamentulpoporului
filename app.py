@@ -5,7 +5,7 @@ from flask import render_template, url_for, redirect, request, session
 from webapp.form import  verify_register_form, autentificarea ,reset_pass, send_otp, send_otp_phone, register_user, verify_changes, password_hash, create_otp
 from webapp import app
 from webapp.otps import otp, otp_phone
-from webapp.database import vot_statistic ,id_user, vot_select ,titluri,select,set_vot,vot_db,validvot,set_vot_popor, get_data_by_id, cautar,introdu,verificare_legi, select_id, get_id_by_title, verificare, inregistrare_changes_db, inreg_data,inregistrare , verificare , verificare_pass , inregistrare_changes_db
+from webapp.database import vot_statistic ,id_user, vot_select ,titluri,select,set_vot,vot_db,validvot,set_vot_popor, get_data_by_id, cautar,introdu,verificare_legi, select_id, get_id_by_title, verificare, inregistrare_changes_db, inreg_data,inregistrare , verificare , verificare_pass , inregistrare_changes_db, trimis_coment,sortare_comentarii
 from datetime import datetime
 from flask_session import Session
 import pandas as pd
@@ -103,7 +103,7 @@ def acasa(id=None):
             
             id_user=inreg_data("id","username",session['username'])
             
-            legi_votate_ids=validvot(id_user[0])
+            legi_votate_ids=validvot(id_user)# tot ca la autentificafe
             
             ok=True
             
@@ -113,8 +113,14 @@ def acasa(id=None):
                 id_lege = str(id_lege)
                 if id==id_lege:
                     ok=False
-        
-        return render_template("layout_lege.html", titlu=titlu, pro=pro, contra=contra, neu=neu, pro_pop=int(pro_pop), con_pop=int(con_pop), neu_pop=int(neu_pop), ok=ok)
+            a=sortare_comentarii(str(id))
+            user=[]
+            for i in range(len(a)-1, -1, -1):
+                aux=vot_statistic("inregistrare","id",str(a[i][1]),"username")
+                user.append(str(aux[0][0]))
+                
+            
+        return render_template("layout_lege.html", titlu=titlu, pro=pro, contra=contra, neu=neu, pro_pop=int(pro_pop), con_pop=int(con_pop), neu_pop=int(neu_pop), ok=ok,len=len(a),a=a,user=user)
 
 
 @app.route("/inregistrare", methods=['GET', 'POST'])
@@ -174,7 +180,7 @@ def autentificare():
                     if email==None:
                         eror="Acest username este invalid"
                     else:
-                        email=email[0]
+                        email=email #eroare sa stiu fac sa mearga [0]
                     
                 password = request.form.get("password")
                 
@@ -213,7 +219,7 @@ def account():
             gl_username, gl_email, error_us, error_em = verify_changes(username, username_form, email, email_form)
             email = gl_email
             username = gl_username
-        #return email+"   "+username
+        #return str(email)+"   "+str(username)
         
         id=id_user(session['username'])
         
@@ -708,6 +714,23 @@ def reguli():
     global_variables()
     return render_template("reguli.html")
 
+@app.route("/comentarii", methods=["GET", "POST"])
+def comentarii():
+    global_variables()
+    if session.get("username"):
+        if request.method == 'POST':
+             id_user=inreg_data("id",'username',session['username'])
+             id_legi=session['id']
+             aux=datetime.now()
+             data=str(aux.day)
+             data+="/"+str(aux.month)
+             data+="/"+str(aux.year)
+             comentariul=request.form.get("comentariu")
+             if comentariul!=None :
+                trimis_coment(str(id_user), str(id_legi),str(data),str(comentariul))
+        return redirect(url_for('acasa',id=session['id']))
+    else :
+        return redirect(url_for('autentificare'))
     
 if __name__ == "__main__":
     app.run(debug = True)
