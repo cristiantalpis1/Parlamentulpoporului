@@ -9,15 +9,17 @@
 {% block content %}
     <div id="all">  
         <div id="main" class="main">
-            <h1>Verificarea Email</h1>
-            <p>Pe adresa de email {{email}} am trimis un cod de 6 cifre. Inserati-l in campul rezervat pentru a verifica email-ul!</p>
+            <h1 >Verificare Email</h1>
+            <p id="text">Pe adresa de email <span>{{email}}</span> am trimis un cod de 6 cifre. Inserati-l in campul rezervat pentru a verifica email-ul!</p>
             <form action="{{url_for('email_verification')}}" method="post">
-                <label for="otp">Codul de 6 cifre: </label><br>
-                <input type="text" name="otp" id="otp" placeholder="123456">
-                <button type="submit" id="button">Verifica</button>
+                <label for="otp">Codul de 6 cifre: </label>
+                <div id="subMain">
+                    <input type="text" name="otp" id="otp" placeholder="123456" maxlength="6">
+                    <button type="submit" id="button">Verifica</button>
+                </div>
             </form>
-            <p>Nu ati primit codul?</p>
-            <a href="url_for('email_verification')">Re-trimite</a>
+            <p id="text2">Nu ati primit codul? <a href="url_for('email_verification')" id="retrimite">Re-trimite</a></p>
+            
         </div>
     </div>  
 {% endblock content %}

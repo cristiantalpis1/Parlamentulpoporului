@@ -703,6 +703,11 @@ def forgot_password():
         error = "Email inexistent"
     return render_template('forgot_password.html')
 
+@app.route("/reguli" )
+def reguli():
+    global_variables()
+    return render_template("reguli.html")
+
     
 if __name__ == "__main__":
     app.run(debug = True)

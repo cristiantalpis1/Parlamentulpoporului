@@ -1,9 +1,19 @@
+:root{
+    --blue: #030A19; 
+    --gray: rgb(112, 112, 112);
+    --red: rgb(208, 9, 9);
+    --lightgray: rgb(225, 225, 225);
+    --lightblue: rgb(32, 238, 241);
+    --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
 *{
     color:black;
 }
 
 body{
-    font-family:sans-serif;
+    font-family: var(--font);
     background-color: rgb(232, 232, 232);
 }
 

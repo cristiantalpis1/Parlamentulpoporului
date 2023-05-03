@@ -10,13 +10,26 @@
 
 
 {% block content %}
-    
-  
+    <div id="descriere">
+        <div id="image">
+            <div id="txt1" class="glass">Consideri ca deputatii nu mai reprezinta opinia ta?</div>
+            <div id="txt2" class="glass">Solutia este votul online asupra proiectelor de legi dezbatute in legislativ. Ulterior poti compara votul tau cu cel al deputatilor, vazand daca coincide sau difera.</div>
+            <div id="txt3" class="glass"> Hai sa revolutionam politicul, inlocuind democratia reprezentativa cu cea directa. Fiecare cetatean poate deveni e-deputat in <strong>Parlamentul Poporului.</strong> </div>
+            <div id="txt4" class="glass">Fii printre primii care schimba politica moldoveneasca.</div>
+        </div>
+        <div id="descriereEnd">
+            <div class="custom-shape-divider-top-1680375570">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+                </svg>
+            </div>
+        </div>
+    </div>    
+
     <div id="main">
+
         <h2 id="tit">Proiecte de legi</h2>
-        {%if eror!=''%}
-            <h2>{{eror}}</h2>
-        {%endif%}
+        
             <!-- For loop logic of jinja template -->
         {%if session['ver']=='2'%}
             <div id="legi">
@@ -24,7 +37,6 @@
                 <a href="{{url_for('acasa',id=ids[i][0])}}">
                     <div class="lege">
                         <p>{{titles[i][0]}}</p>
-                    
                     </div>
                 </a>
                 {%endfor%}

@@ -1,0 +1,62 @@
+{% block head %}
+    <link href="{{ url_for('static', filename='reguli.css') }}" type="text/css" rel="stylesheet">
+{% endblock head %}
+
+
+{% block content %}
+
+<div id="main">
+    <div id="container">
+        <div id="title">Reguli</div>
+        <div id="subContainer">  
+            <div id="leftSide">
+                <div class="ssc">
+                    <div class="topText" id="txtLeft1">Pentru a vota va trebui sa va<br> inregistrati mai intai</div>
+                    <div class="line"></div>
+                    <a href="{{ url_for('inregistrare') }}"><button id="inregistreazate">Inregistreaza-te</button></a>
+                </div>
+
+                <div class="ssc">
+                    <div class="topText" id="txtLeft2">Poți vota o singură dată<br> per proiect de lege</div>
+                    <div class="line lineL2"></div>
+                    <div id="aca">Alege cu atentie!</div>
+                </div>
+
+                <div class="ssc">
+                    <div class="topText" id="txtLeft3">Iar dacă ai nevoie de mai multă informație<br> poți accesa pagina web sau canalul de <br>YouTube al Parlamentului Republicii Moldova.</div>
+                    <div class="line"></div>
+                    <a href="https://www.youtube.com/@ParlamentulRepubliciiMoldova" id="link">https://www.youtube.com/@ParlamentulRepubliciiMoldova</a>
+                </div>
+            </div>
+
+            <div id="middleLine"></div>
+
+            <div id="rightSide">
+
+                <div class="ssc">
+                    <div class="topText" id="txtRight1">Butonul verde - pro<br> Butonul roşu - contra<br> Butonul albastru - abținere</div>
+                    <div class="line"></div>
+                    <div id="buttonsContainer">
+                        <button id="pro1" class="buttonVote" >Pro</a></button>
+                        <button id="contra1" class="buttonVote" >Con</a></button>
+                        <button id="neutru1" class="buttonVote" >Neu</a></button>
+                    </div>
+                </div>
+
+                <div class="ssc">
+                    <div class="topText" id="txtRight2">Pentru a vota informat îți sugerăm<br> să citeşti descrierea proiectului</div>
+                    <div class="line"></div>
+                </div>
+
+                <div class="ssc">  
+                    <div class="topText" id="txtRight3">Acolo vei găsi textul integral al proiectului de lege,<br> documentele adiționale şi dezbaterile referitoare<br> la fiecare proiect în parte.</div>
+                    <div class="line"></div>
+                </div>    
+            </div>
+        </div>  
+        <div id="bottomText"> Îți mulțumim pentru că îți faci vocea auzită şi contribui la o nouă abordare în politica moldovenească!</div>
+        <a href="{{ url_for('acasa') }}"><button id="inapoi">Inapoi</button></a>
+    </div>
+</div>
+
+{% endblock content %}

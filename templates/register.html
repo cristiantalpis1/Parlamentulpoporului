@@ -1,117 +1,116 @@
-
-
 {% block head %}
     <link href="{{ url_for('static', filename='register.css') }}" type="text/css" rel="stylesheet">
-    <link
-     rel="stylesheet"
-     href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
-     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
-
 {% endblock head %}
-
 {% block content %}
-<div id="main">
-    <div id="container">
-        <a href="{{ url_for('acasa') }}"><img src="{{url_for('static',filename='logoNouPPBlack.png')}}" id="logo"></a>
-        <h1>Inregistrare</h1>
-        <form action="inregistrare" method="post" id="form" onsubmit="process(event)">
+    <div id="main">
+        <div id="container">
+            <a href="{{ url_for('acasa') }}"><img src="{{url_for('static',filename='cover.png')}}" id="logo"></a>
+            <h1>Inregistrare</h1>
+            <form action="inregistrare" method="post" id="form" onsubmit="process(event)">
+            
+                <label for="user" class="label">Nume de utilizator</label>
+                <input type="text" name="user" oninput="getValue()"  id="numeUtilizator" pattern="^[a-zA-Z0-9._]+$" class="input" minlength="3" maxlength="25" required>
+                <div id="eroare_nume" class="eroare">Acest nume este folosit</div>
+
+                <label for="email" class="label">Email</label>
+                <input type="email" name="email" id="emailSelectat"class="input" maxlength="75" placeholder="exemplu@gmail.com" required>
+                <div id="eroare_email" class="eroare">Acest email este deja folosit</div>
+
+                <label for="phone" class="label">Numar de telefon</label>
+                <input type="tel" id="phone" pattern="((6|7)[0-9]{7}|0[0-9]{8})" name="phone" class="input" placeholder="78777777" required>
+                <div id="eroare_phone" class="eroare">Acest numar este deja folosit</div>
+
+                <label for="password" class="label">Parola</label>
+                <input type="password" name="password" id="parolaSelectata" class="input" minlength="8" required>
+                <div id="eroare_password" class="eroare">Parolele nu coincid</div>
+
+                <label for="pass_conf" class="label">Confirmare parola</label>
+                <input type="password" name="pass_conf" id="confirmareParolaSelectata" class="input" required>
+                
+
+                <button type="submit" id="inregistreazate">Inregistreaza-te</button>
+            
+            </form>
         
-            <label for="user" class="label">Nume de utilizator</label>
-            <input type="text" name="user" id="numeUtilizator" pattern="^[a-zA-Z0-9._]+$" class="input" minlength="3" maxlength="25" required>
-            <div id="eroare_nume" class="eroare">Acest nume este folosit</div>
-
-            <label for="email" class="label">Email</label>
-            <input type="email" name="email" id="emailSelectat"class="input" maxlength="75" required>
-            <div id="eroare_email" class="eroare">Acest email este deja folosit</div>
-
-            <label for="phone" class="label">Numar de telefon</label>
-            <input type="tel" id="phone" pattern="((6|7)[0-9]{7}|0[0-9]{8})" name="phone" class="input" required>
-            <div id="eroare_phone" class="eroare">Acest numar este deja folosit</div>
-
-            <label for="password" class="label">Parola</label>
-            <input type="password" name="password" id="parolaSelectata" class="input" minlength="8" required>
-
-            <label for="pass_conf" class="label">Confirmare parola</label>
-            <input type="password" name="pass_conf" id="confirmareParolaSelectata" class="input" required>
-            <div id="eroare_password" class="eroare">Parolele nu coincid</div>
-
-            <button type="submit" id="inregistreazate">Inregistreaza-te</button>
-        
-        </form>
-       
-        <span id="autentificare">Ai cont deja?<a href="{{ url_for('autentificare') }}" id="autentificate">Autentifica-te</a> </span>
-
+            <span id="autentificare">Ai cont deja?<a href="{{ url_for('autentificare') }}" id="autentificate">Autentifica-te</a> </span>
+        </div>
+        <div id="text">
+            <div>Consideri ca deputatii nu mai reprezinta opinia ta?</div>
+            Solutia este votul online asupra proiectelor de legi dezbatute in legislativ.
+            Ulterior poti compara votul tau cu cel al deputatilor, vazand daca coincide sau difera.
+            Hai sa revolutionam politicul, inlocuind democratia reprezentativa cu cea directa.
+            Fiecare cetatean poate deveni e-deputat in <b>Parlamentul Poporului</b>.
+            Fii printre primii care schimba politica moldoveneasca.
+        </div>
     </div>
-    <div id="text">
-        Consideri ca deputatii nu mai reprezinta opinia ta?
-        Solutia este votul online asupra proiectelor de legi dezbatute in legislativ.
-        Ulterior poti compara votul tau cu cel al deputatilor, vazand daca coincide sau difera.
-        Hai sa revolutionam politicul, inlocuind democratia reprezentativa cu cea directa.
-        Fiecare cetatean poate deveni e-deputat in <b>Parlamentul Poporului</b>.
-        Fii printre primii care schimba politica moldoveneasca.
-    </div>
-</div>
 
+    <!-- ^^  form code  ^^ -->
 
-
-<!-- ^^  form code  ^^ -->
-
-
-<script>
-    var taken_username = "{{ taken_username }}";
-    if(taken_username){
 
     
-        let eroare_nume = document.getElementById("eroare_nume");
-        eroare_nume.style.display = "block";
-        let numeUtilizator = document.getElementById("numeUtilizator");
-        numeUtilizator.classList.add("eroareInput")
-    
-    }
+   
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!--<script>
+        let text = document.getElementById("text").value;
+        let eroare_nume = document.getElementById("eroare_nume"); 
 
-</script>
-{% if taken_email %}
+        function getValue(){
+            if({{ taken_username|tojson }}){
+                eroare.style.opacity = 1;
+                numeUtilizator.classList.add("eroareInput");
+            }else{
+                eroare.style.opacity = 0;
+                numeUtilizator.classList.add("eroareInput");
+            };
+        };
 
+    </script>-->
+
+    {% if taken_username %}
+        <script>
+            let eroare_nume = document.getElementById("eroare_nume");
+            eroare_nume.style.display = "block";
+            let numeSelectat = document.getElementById("numeSelectat");
+            numeSelectat.classList.add("eroareInput")
+        </script>
+    {% endif %}
+
+
+    {% if taken_email %}
+        <script>
+            let eroare_email = document.getElementById("eroare_email");
+            eroare_email.style.display = "block";
+            let emailSelectat = document.getElementById("emailSelectat");
+            emailSelectat.classList.add("eroareInput")
+        </script>
+    {% endif %}
+    {% if taken_phone %}
+        <script>
+            let eroare_phone = document.getElementById("eroare_phone");
+            eroare_phone.style.display = "block";
+            let phone = document.getElementById("phone");
+            phone.classList.add("eroareInput")
+        </script>
+    {% endif %}
     <script>
-        let eroare_email = document.getElementById("eroare_email");
-        eroare_email.style.display = "block";
-        let emailSelectat = document.getElementById("emailSelectat");
-        emailSelectat.classList.add("eroareInput")
+        let parolaSelectata = document.getElementById("parolaSelectata");
+        let confirmareParolaSelectata = document.getElementById("confirmareParolaSelectata");
+        let eroare_password = document.getElementById("eroare_password");
+        if(parolaSelectata.innerHTML !== confirmareParolaSelectata.innerHTML){
+            eroare_password.style.display="block";
+            parolaSelectata.classList.add("eroareInput");
+            confirmareParolaSelectata.classList.add("eroareInput");
+        };
     </script>
-
-{% endif %}
-
-{% if taken_phone %}
-
     <script>
-        let eroare_phone = document.getElementById("eroare_phone");
-        eroare_phone.style.display = "block";
-        let phone = document.getElementById("phone");
-        phone.classList.add("eroareInput")
-    </script>
-
-{% endif %}
-
-<script>
-    let parolaSelectata = document.getElementById("parolaSelectata");
-    let confirmareParolaSelectata = document.getElementById("confirmareParolaSelectata");
-    let eroare_password = document.getElementById("eroare_password");
-    if(parolaSelectata.innerHTML !== confirmareParolaSelectata.innerHTML){
-        eroare_password.style.display="block";
-        parolaSelectata.classList.add("eroareInput");
-        confirmareParolaSelectata.classList.add("eroareInput");
-    };
-</script>
-
-<script>
-    const phoneInputField = document.querySelector("#phone");
-    const phoneInput = window.intlTelInput(phoneInputField);
-    var input = document.querySelector("#phone");
-    window.intlTelInput(input, {
-    onlyCountries: ["md"]
-    });
-    	
-</script>   
+        const phoneInputField = document.querySelector("#phone");
+        const phoneInput = window.intlTelInput(phoneInputField);
+        var input = document.querySelector("#phone");
+        window.intlTelInput(input, {
+        onlyCountries: ["md"]
+        });
+            
+    </script>   
 {% endblock content %}
-

@@ -2,10 +2,11 @@
     --blue: rgb(12, 12, 38); 
     --gray: rgb(112, 112, 112);
     --red: rgb(208, 9, 9);
+    --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body{
-    font-family:sans-serif;
+    font-family: var(--font);
     background-color: #030A19;
     color: white;
     margin: 0;
@@ -94,7 +95,8 @@ body{
 }
 
 #update:hover{
-    background-color: rgba(182, 0, 0, 0.416);
+   /* background-color: rgba(182, 0, 0, 0.416);*/
+    background-color: rgba(18, 135, 146, 0.416);
 }
 
 #links{
@@ -106,7 +108,7 @@ body{
 }
 
 #links a:hover{
-    background-color: rgba(182, 0, 0, 0.416);
+    background-color: rgba(18, 135, 146, 0.416);
 }
 
 #links a{

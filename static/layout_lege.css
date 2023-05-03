@@ -1,14 +1,18 @@
-:root{
-    --blue: rgb(12, 12, 38); 
-    --gray: rgb(112, 112, 112);
-    --red: rgb(208, 9, 9);
-    --green: rgb(0, 229, 0);
+html:focus-within{
+    scroll-behavior: smooth;
 }
 
-
-
+:root{
+    --blue: #030A19; 
+    --gray: rgb(112, 112, 112);
+    --lightgray: rgb(225, 225, 225);
+    --red: rgb(208, 9, 9);
+    --green: rgb(0, 229, 0);
+    --lightblue: rgb(16, 210, 213);
+    --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 body{
-    font-family:sans-serif;
+    font-family: var(--font);
     background-color: white;
 
 }
@@ -24,7 +28,7 @@ body{
 
 header{
     display: flex;
-    background-color: rgba(12, 12, 38, 0.95);
+    background-color: #030a19f0;
     border-bottom: 3px solid var(--blue);
     z-index: 100;
     width: 100%;
@@ -37,8 +41,8 @@ header{
 }
 
 #logo{
-    width: 11.25rem;
-    margin-left: 2.5rem;
+    width: 12rem;
+    margin-left: 2rem;
 }
 
 #nav{
@@ -64,14 +68,10 @@ header{
 }
 
 #cautare:focus{
-    background-color: rgb(251, 230, 230);
     color: black;
 
 }
 
-#cautare:hover{
-    background-color: rgb(251, 230, 230);
-}
 
 #cautareForm{
     display: flex;
@@ -91,7 +91,7 @@ header{
 }
 
 #searchButton:hover{
-    color: var(--red);
+    color: var(--lightblue);
 }
 
 .account_icon{
@@ -106,12 +106,110 @@ header a{
     text-decoration: none;
 }
 header a:hover{
-    color:var(--red);
+    color:var(--lightblue);
     text-decoration: none;
 }
 
+/**/
 
+#navLinks a::after{
+    content: "";
+    width: 0;
+    height: 1.5px;
+    background-color: var(--lightblue);
+    margin: auto;
+    display: block;
+    
+  }
+
+#navLinks a:hover::after{
+    width: 100%;
+    transition: width 0.4s ease-in-out, left 0.4s ease-in-out;
+    color: var(--lightblue);
+}
+#navLinks a:hover{
+    color: var(--lightblue);
+}
+
+/**/
+
+#navLinks{
+    display: flex;
+    gap: 60px;
+    font-size: 20px;
+    
+}
+
+#navLinks a{
+    transition: all 0.3s ease-in-out;
+}
 /*nav-bar end*/
+
+
+footer{
+    font-size: 1.1rem;
+    background-color: var(--blue);
+    padding: 6vh;
+}
+
+#footerMain{
+    display:flex;
+    justify-content: space-between;
+}
+
+#information{
+    display: flex;
+    align-items: flex-end;
+    gap: 40px;
+    font-size: 20px;
+}
+
+.info{
+    color: rgb(112, 112, 112);
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.info::after{
+    content: "";
+    width: 0;
+    height: 1.5px;
+    background-color: aqua;
+    margin: auto;
+    display: block;
+    
+}
+
+.info:hover::after{
+    width: 100%;
+    transition: width 0.4s ease-in-out, left 0.4s ease-in-out;
+    color: aqua;
+}
+
+.info:hover{
+    color: var(--lightblue);
+}
+
+#socials{
+    display: flex;
+    gap:2rem;
+    align-items: flex-end;
+    
+}
+
+.socialIcon{
+    color:var(--gray);
+    font-size: 2rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.socialIcon:hover{
+    color:var(--lightblue);
+    transform: scale(1.2);
+}
+
+/*end of footer*/
+
 
 #all{
     display: flex;
@@ -136,6 +234,7 @@ header a:hover{
     border-bottom: 3px solid black ;
     white-space: normal;
     word-wrap: break-word;
+    
 
 }
 
@@ -170,8 +269,12 @@ iframe{
     
 }
 
+#sursa a{
+    color: var(--lightblue);
+}
+
 .line{
-    height: 2px;
+    height: 3px;
     width: 100%;
     background-color: black;
 }
@@ -200,6 +303,7 @@ iframe{
     justify-content: space-evenly;
     width: 100%;
 }
+
 .subVoturiContainer{
     display: flex;
     flex-direction: column;
@@ -209,12 +313,13 @@ iframe{
 
 
 .piechart{
-    width: 320px;
-    height: 250px;
+    width: 380px;
+    height: 260px;
     border-radius: 2px;
     overflow: hidden;
     box-shadow: 0px 5px 15px 3px rgba(0, 0, 0, 0.208);
     transition: all 0.4s ease-in-out;
+    
 }
   
 .piechart:hover{
@@ -247,15 +352,11 @@ iframe{
 
 #voteaza:focus{
     cursor: pointer;
-    border-color: #0c1836a8;
-    background-color:var(--red);
-    color:white;
+    border-color: var(--blue);
+    background-color: rgba(32, 237, 241, 0.285);
+    color:var(--blue);
 }
 
-#form1{
-    display: flex;
-    gap: 20px;
-}
 
 .buttonVote{
     width: 80px;
@@ -309,61 +410,20 @@ iframe{
 
 
 
-footer{
-    font-size: 18px;
-    background-color: var(--blue);
-    padding: 6vh;
-}
-
-#footerMain{
-    display:flex;
-    justify-content: space-between;
-}
-
-#information{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-}
-
-.info{
-    color: rgb(112, 112, 112);
-    text-decoration: none;
-    transition: all 0.2s ease-in-out;
-}
-
-.info:hover{
-    color:rgb(208, 9, 9);
-}
-
-#socials{
-    display: flex;
-    gap:30px;
-    align-items: flex-end;
-    
-}
-
-.socialIcon{
-    color:var(--gray);
-    font-size: 30px;
-    transition: all 0.2s ease-in-out;
-}
-
-.socialIcon:hover{
-    color:var(--red);
-}
-
-
 /*pentru dialog*/
 
 .modal {
     box-shadow: 0 0 0 100vw rgb(0 0 0 / 0.5);
     background: #fff;
     color: #222;
-    border: 0;
-    border-radius: 0.25rem;
+    border:3px solid rgb(218, 218, 218);
+    border-radius: 0.5rem;
     padding: 0;
+    position: fixed; 
+    left: 0; 
+    right: 0; 
+    top: 30%;
+    margin: 0 auto;
 }
   
 .modal::backdrop {
@@ -418,18 +478,164 @@ footer{
 
 /* extra styling */
 
-.modal {
-    max-width: 50ch;
+.modal{
+    max-width: 40ch;
+}
+
+.modal .button{
+    background-color: transparent;
+    border: none;
+}
+
+#dialogTopPart{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-bottom: 3px solid rgb(218, 218, 218);
 }
 
 
-
-
-.button:hover,
-.button:focus {
-    background:red;
+.fa-xmark{
+    font-size: 40px;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    cursor: pointer;
 }
 
+
+#txtVoteazaDialog{
+    font-size: 2.7em;
+    align-self: center;
+    text-align: center;
+    padding-block: 0.5rem;
+    color: black;
+}
+
+
+#form1{
+    padding-inline: 20px;
+    padding-block: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    gap: 20px;
+}
+
+
+/*comment section style*/
+
+
+#addComment{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: -60px;
+}
+
+#addComment .account_icon{
+    font-size: 60px;
+    margin-right: 10px;
+}
+
+
+#addCommentInput{
+    font-size: 30px;
+    width: 100%;
+    padding: 10px 20px;
+    
+    border: 2px solid var(--lightgray) ;
+}
+
+#addCommentButton{
+    font-size: 30px;
+    padding: 10px 20px;
+    color: var(--gray);
+    background-color: transparent;
+    border: 2px solid var(--lightgray) ;
+    transform: translateX(-2px);
+}
+
+#commentSectionContainer{
+    background-color: transparent;
+    border-block: 3px solid var(--lightgray);
+    max-height: 90vh;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    overflow-wrap: break-word;
+}
+
+
+.comment{
+    display: flex;
+    border-bottom: 3px solid var(--lightgray);
+    margin: 20px;
+    padding-bottom: 10px;
+}
+
+.comment .account_icon{
+    font-size: 60px;
+}
+
+#commentProfileInfo{
+    display: flex ;
+    align-items: center;
+    gap: 10px;
+}
+
+#commentRightSide{
+    display: flex;
+    flex-direction: column;
+    justify-self: flex-start;
+    gap: 14px;
+
+}
+
+
+#numeComentator{
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.fa-clock{
+    font-size: 22px;
+    color: var(--gray);
+}
+
+#dataComentariului{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+#time{
+    font-size: 18px;
+    color: var(--gray);
+}
+
+#commentText{
+    font-size: 20px;
+}
+
+#dislikes{
+    transform: rotate(180deg);
+}
+
+.fa-thumbs-up{
+    font-size: 25px;
+    color: var(--gray);
+}
+
+#likes_dislikes span{
+    font-size: 24px; 
+    margin-right: 10px;
+    color: var(--gray);
+}
 
 /*for different sizes:*/
 @media screen and (max-width:50em){
@@ -479,6 +685,11 @@ footer{
 
     #tit{
         font-size: 2rem;
+    }
+
+
+    #title{
+        padding-inline: 20px;
     }
 
     #voturiContainer{

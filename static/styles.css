@@ -1,11 +1,17 @@
-:root{
-    --blue: rgb(12, 12, 38); 
-    --gray: rgb(112, 112, 112);
-    --red: rgb(208, 9, 9);
+html:focus-within{
+    scroll-behavior: smooth;
 }
 
+:root{
+    --blue: #030A19; 
+    --gray: rgb(112, 112, 112);
+    --red: rgb(208, 9, 9);
+    --green: rgb(0, 229, 0);
+    --lightblue: rgb(16, 210, 213);
+    --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 body{
-    font-family:sans-serif;
+    font-family:var(--font);
     background-color: white;
 
 }
@@ -21,7 +27,7 @@ body{
 
 header{
     display: flex;
-    background-color: rgba(12, 12, 38, 0.95);
+    background-color: #030a19f0;
     border-bottom: 3px solid var(--blue);
     z-index: 100;
     width: 100%;
@@ -34,8 +40,8 @@ header{
 }
 
 #logo{
-    width: 11.25rem;
-    margin-left: 2.5rem;
+    width: 12rem;
+    margin-left: 2rem;
 }
 
 #nav{
@@ -61,14 +67,10 @@ header{
 }
 
 #cautare:focus{
-    background-color: rgb(251, 230, 230);
     color: black;
 
 }
 
-#cautare:hover{
-    background-color: rgb(251, 230, 230);
-}
 
 #cautareForm{
     display: flex;
@@ -88,7 +90,7 @@ header{
 }
 
 #searchButton:hover{
-    color: var(--red);
+    color: var(--lightblue);
 }
 
 .account_icon{
@@ -103,12 +105,109 @@ header a{
     text-decoration: none;
 }
 header a:hover{
-    color:var(--red);
+    color:var(--lightblue);
     text-decoration: none;
 }
 
+/**/
 
+#navLinks a::after{
+    content: "";
+    width: 0;
+    height: 1.5px;
+    background-color: var(--lightblue);
+    margin: auto;
+    display: block;
+    
+  }
+
+#navLinks a:hover::after{
+    width: 100%;
+    transition: width 0.4s ease-in-out, left 0.4s ease-in-out;
+    color: var(--lightblue);
+}
+#navLinks a:hover{
+    color: var(--lightblue);
+}
+
+/**/
+
+#navLinks{
+    display: flex;
+    gap: 60px;
+    font-size: 20px;
+    
+}
+
+#navLinks a{
+    transition: all 0.3s ease-in-out;
+}
 /*nav-bar end*/
+
+
+footer{
+    font-size: 1.1rem;
+    background-color: var(--blue);
+    padding: 6vh;
+}
+
+#footerMain{
+    display:flex;
+    justify-content: space-between;
+}
+
+#information{
+    display: flex;
+    align-items: flex-end;
+    gap: 40px;
+    font-size: 20px;
+}
+
+.info{
+    color: rgb(112, 112, 112);
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.info::after{
+    content: "";
+    width: 0;
+    height: 1.5px;
+    background-color: aqua;
+    margin: auto;
+    display: block;
+    
+}
+
+.info:hover::after{
+    width: 100%;
+    transition: width 0.4s ease-in-out, left 0.4s ease-in-out;
+    color: aqua;
+}
+
+.info:hover{
+    color: var(--lightblue);
+}
+
+#socials{
+    display: flex;
+    gap:2rem;
+    align-items: flex-end;
+    
+}
+
+.socialIcon{
+    color:var(--gray);
+    font-size: 2rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.socialIcon:hover{
+    color:var(--lightblue);
+    transform: scale(1.2);
+}
+
+/*end of footer*/
 
 #main{
     margin-inline: 10vh;
@@ -123,8 +222,7 @@ header a:hover{
     text-align: center;
     font-size: 3.75rem;
     font-weight: 500;
-    color:#0C1836;
-    text-shadow: 2px 2px 5px#0c18369c;
+    color:black;
     padding-bottom: 0.625rem;
     border-bottom: 4px solid #0C1836;
 }
@@ -135,12 +233,14 @@ header a:hover{
     margin: 0px;
     height: 100%;
     padding: 1.5rem;
-    border-radius: 2px;
     color: black;
-    background-color: white;
+    border-radius: 2px;
+    line-height: 1.6em;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.123), rgba(148, 145, 145, 0.1));
+
     box-shadow: 0 0 13px #0b2e8689;
     transition: all 0.4s ease-in-out;
-    line-height: 1.6em;
+    
     
 }
 .lege:hover{
@@ -197,57 +297,12 @@ header a:hover{
 
 #maiMulte:focus{
     cursor: pointer;
-    border-color: #0c1836a8;
-    background-color:rgb(177, 7, 7);
-    color:white;
+    border-color: var(--blue);
+    background-color: rgba(32, 237, 241, 0.285);
+    color:var(--blue);
 }
 
 
-
-footer{
-    font-size: 1.1rem;
-    background-color: var(--blue);
-    padding: 6vh;
-}
-
-#footerMain{
-    display:flex;
-    justify-content: space-between;
-}
-
-#information{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-}
-
-.info{
-    color: rgb(112, 112, 112);
-    text-decoration: none;
-    transition: all 0.2s ease-in-out;
-}
-
-.info:hover{
-    color:rgb(208, 9, 9);
-}
-
-#socials{
-    display: flex;
-    gap:2rem;
-    align-items: flex-end;
-    
-}
-
-.socialIcon{
-    color:var(--gray);
-    font-size: 2rem;
-    transition: all 0.2s ease-in-out;
-}
-
-.socialIcon:hover{
-    color:var(--red);
-}
 
 /*for different sizes:*/
 @media screen and (max-width:50em){
@@ -315,4 +370,96 @@ footer{
     .socialIcon{
         font-size: 1em;
     }
+}
+
+/*pentru descrierea de la inceput*/
+
+
+#image{
+    background-image: url(Parlament-republica-moldova.jpg);
+    height: 1100px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap:80px;
+    padding-top: 140px;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+
+}
+
+#txt1{
+    font-size: 50px;
+    padding-inline: 30px;
+    align-self: center;
+}
+
+#txt2{
+    font-size: 30px;
+    align-self: flex-end;
+    right: 30px;
+    word-wrap: break-word;
+    width: 780px;
+}
+
+#txt3{
+    font-size: 30px;
+    left: 40px;
+    word-wrap: break-word;
+    width: 780px;
+}
+
+#txt4{
+    font-size: 40px;
+    align-self: flex-end;
+    right: 50px;
+    word-wrap: break-word;
+    width: 750px;
+}
+
+.glass{
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.18);
+    box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.37);
+    position: relative;
+    padding-inline: 30px;
+    padding-block: 15px;
+    color: white;
+    line-height: 1.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.361);
+
+}
+
+#descriereEnd{
+    /*height: 30px;
+    background-color: var(--blue);
+    width: 100%;*/
+    position: relative;
+    transform: translateY(-1px);
+}
+
+.custom-shape-divider-top-1680375570 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-top-1680375570 svg {
+    position: relative;
+    display: block;
+    width: calc(300% + 1.3px);
+    height: 33px;
+}
+
+.custom-shape-divider-top-1680375570 .shape-fill {
+    fill: #030A19;
 }

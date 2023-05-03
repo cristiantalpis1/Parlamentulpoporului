@@ -27,15 +27,20 @@
     <body>
         
         <header id="header">
-            <a href="{{ url_for('acasa') }}"><img src="{{url_for('static',filename='logoNouPP.png')}}" id="logo"></a>
+            <a href="{{ url_for('acasa') }}"><img src="{{url_for('static',filename='cover_white.png')}}" id="logo"></a>
             
             <nav id="nav" >
+                <div id="navLinks">
+                    <a href="{{ url_for('reguli') }}" >Reguli</a>
+                    <a href="" >Despre noi</a>
+                </div>
                 <form action="{{ url_for('cautare') }}" method="post" id="cautareForm">
                     <input type="text"
                     placeholder="Cautare..."
                     id="cautare" name="caut">
                     <button type="submit" id="searchButton">  <i class="material-icons" >search</i></button>
                 </form>
+               
 
                 <div>  
                     {%if session.get("username")!=None  %}
@@ -60,9 +65,7 @@
         <footer>
             <div id="footerMain">
                 <div id="information">
-                    <a href="" class="info">Reguli</a>
                     <a href="" class="info">Feedback</a>
-                    <a href="" class="info">Despre Noi</a>
                     <a href="" class="info">Politica de confidentialitate</a>
                 </div>
                 <div id="socials"> 
@@ -91,10 +94,6 @@
             }
             prevScrollpos = currentScrollPos;
             };
-
-            
-            
-
 
 
         </script>

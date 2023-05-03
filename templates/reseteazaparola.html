@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+
 
 
 {% block head %}
@@ -9,15 +9,17 @@
 {% block content %}
         <div id="main">
             <div id="container">
+                <a href="{{ url_for('acasa') }}"><img src="{{url_for('static',filename='cover.png')}}" id="logo"></a>
+                <div class="line"></div>
                 <form action="" method="post" id="form">
                     {% if not(exceptie) %}
                         <label for="password">Parola Veche</label>
-                        <input type="password" name="password" id=""><br>
+                        <input type="password" name="password" id="">
                     {% endif %}
                     <label for="new_pass">Parola noua</label>
-                    <input type="password" name="new_pass" id="" minlength="8"><br>
+                    <input type="password" name="new_pass" id="" minlength="8">
                     <label for="conf_pass">Confirmare parola</label>
-                    <input type="password" name="conf_pass" id=""><br>
+                    <input type="password" name="conf_pass" id="">
                     <button type="submit" id="confirmare">Confirmare</button>
                 </form>
             </div>    

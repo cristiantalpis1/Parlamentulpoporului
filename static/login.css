@@ -1,5 +1,14 @@
+:root{
+    --blue: #030A19; 
+    --gray: rgb(112, 112, 112);
+    --red: rgb(208, 9, 9);
+    --lightgray: rgb(225, 225, 225);
+    --lightblue: rgb(32, 238, 241);
+    --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 body{
-    font-family:sans-serif;
+    font-family: var(--font);
     background-color: white;
     background-image: url('whiteBackground.jpg');
     background-repeat: no-repeat;
@@ -91,8 +100,8 @@ h1{
 }
 
 #autentificare{
-    color: rgb(13, 190, 239);
-    border: 2px solid rgb(13, 190, 239);
+    color: var(--blue);
+    border: 3px solid var(--blue);
     background-color: transparent;
     border-radius: 10px;
     font-size: 20px;
@@ -102,7 +111,16 @@ h1{
     transition: all 0.2s ease-in-out;
 }
 #autentificare:hover{
-    background-color: rgba(43, 230, 227, 0.272);
+    color: white;
+    background-color: var(--blue);
+    text-decoration: none;
+}
+
+#autentificare:focus{
+    cursor: pointer;
+    border-color: var(--blue);
+    background-color: rgba(32, 237, 241, 0.285);
+    color: var(--blue)
 }
 
 #aup{
@@ -121,7 +139,7 @@ h1{
 }
 
 #inregistreazate{
-    color: rgb(13, 190, 239);
+    color: var(--lightblue);
     padding-left: 5px;
 }
 

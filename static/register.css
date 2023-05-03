@@ -1,23 +1,27 @@
 :root{
-    --blue: rgb(12, 12, 38); 
+    --blue: #030A19; 
+    --gray: rgb(112, 112, 112);
+    --red: rgb(208, 9, 9);
+    --lightgray: rgb(225, 225, 225);
+    --lightblue: rgb(32, 238, 241);
+    --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body{
-    font-family:sans-serif;
+    font-family:var(--font);
     background-color: white;
     background-image: url('whiteBackground.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     
-      
-      
+    
 }
 
 #logo{
     width: 200px;
     height: 100%;
-    margin-block: 20px;
+    margin-block: 10px;
 }
 
 
@@ -52,14 +56,15 @@ body{
 .label{
     color: rgb(125, 125, 125);
     align-self: flex-start;
-    margin-top: 10px;
+    margin-top: 0px;
+    font-size: 20px;
 }
 
 .input{
     border-radius: 0.4em;
     padding-left: 5px;
-    border: 2px solid lightgray;
-    font-size: 25px;
+    border: 2.5px solid lightgray;
+    font-size: 24px;
     width: 11em;
 }
 
@@ -77,19 +82,29 @@ h1{
 
 
 #inregistreazate{
-    color: rgb(13, 190, 239);
-    border: 2px solid rgb(13, 190, 239);
+    color: var(--blue);
+    border: 3px solid var(--blue);
     background-color: transparent;
     border-radius: 10px;
     font-size: 20px;
     padding-block: 5px;
     padding-inline: 15px;
     transition: all 0.2s ease-in-out;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 #inregistreazate:hover{
-    background-color: rgba(43, 230, 227, 0.272);
+    color: white;
+    background-color: var(--blue);
+    text-decoration: none;
 }
+
+#inregistreazate:focus{
+    cursor: pointer;
+    border-color: var(--blue);
+    background-color: rgba(32, 237, 241, 0.285);
+    color: var(--blue)
+}
+
 
 #autentificare{
     text-align: center;
@@ -102,7 +117,7 @@ h1{
 
 
 #autentificate{
-    color: rgb(13, 190, 239) ;
+    color: var(--lightblue);
 }
 #autentificate:hover{
     text-decoration: underline;
@@ -110,23 +125,33 @@ h1{
 
 #text{
     color: black;
-    font-size: 1em;
+    font-size: 1.2em;
     max-width: 50vw;
     text-align: center;
     line-height: 50px;
 }
 
-.eroare{
-    font-size: 10px;
-    color: red;
-    align-self: flex-start;
-    margin:5px;
-    display: none;
-
+#text div{
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
 }
 
+.eroare{
+    font-size: 14px;
+    color: transparent;
+    align-self: flex-start;
+    margin-top:2px;
+    pointer-events: none;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+
+} 
+
 .eroareInput{
-    border: 2px solid red;
+    border-color: red;
 }
 
 @media screen and (max-width: 1000px){

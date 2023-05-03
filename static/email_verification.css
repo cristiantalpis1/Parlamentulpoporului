@@ -1,136 +1,131 @@
+:root{
+    --blue: #030A19; 
+    --gray: rgb(112, 112, 112);
+    --red: rgb(208, 9, 9);
+    --lightgray: rgb(225, 225, 225);
+    --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
 *{
-    color:black;
+    padding: 0;
+    margin: 0;
+}
+
+*, *::before, *::after{
+    box-sizing: border-box;
 }
 
 body{
-    font-family:sans-serif;
-    background-color: rgb(232, 232, 232);
+    font-family:var(--font);
+    background-color: white;
+    background-image: url('whiteBackground.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    
+    
 }
-
-#navimage{
-    height: 22vh;
-    width: 140vw;
-    filter: blur(12px);
-    -webkit-filter: blur(12px);
-    margin-left: -20px;
-
-}
-
-.toptop{
-   background-size: 100%;
-   object-fit: cover;
-   height: 25vh;
-   width: 100%;
-   display: block;
-   position: absolute;
-   top: -20px;
-   overflow: hidden;
-}
-
-.nav-scrolled{
-    background-color: rgb(12, 12, 38);
-    /*background-image: url("newscreenshot.png");*/
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.402);
-}
-
-header{
-    display: flex;
-    /*background-image: linear-gradient(to bottom right,rgb(57, 57, 146),rgb(17, 16, 75));*/
-    z-index: 2;
-    width: 100%;
-    height: 14vh;
-    align-items: center;
-    top: 0;
-    position: fixed;
-    transition: background 250ms ease-in;
-    transition: transform 0.5s;
-}
-
-.nav--hidden{
-    transform: translateY(-140px);
-    box-shadow: none;
-}
-
-#logo{
-    width: 200px;
-    margin-left: 40px;
-}
-
-#nav{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    text-decoration: none;
-    width: 100%;
-}
-
-#cautare{
-    font-size:20px;
-    background-color: rgb(255, 255, 255);
-    border-radius: 17px;
-    border: none;
-    padding-left: 0.5em;
-    color: rgb(64, 64, 64);
-    height: 30px;
-}
-
-#cautareForm{
-    display: flex;
-    align-items:center;
-}
-
-#searchButton{
-    background-color: transparent;
-    border:none;
-    color:white;
-    margin-top: 7px;
-}
-
-#searchButton i{
-    font-size: 35px;
-    color:white;
-}
-
-#limba{
-    font-size: 30px;
-    color: white;
-    font-family: 'Times New Roman', Times, serif;
-    cursor: pointer;
-}
-
-#limba p{
-    color: white;
-}
-
-#limba:hover{
-    color:rgb(255, 39, 39);
-}
-
-nav a{
-    color:white;
-    text-decoration: none;
-}
-nav a:hover{
-    color:rgb(255, 39, 39);
-    text-decoration: none;
-}
-
-
-/*nav-bar end*/
 
 #all{
     display: grid;
     place-content: center;
+    height: 100%;
 }
 
 .main{
     width: 500px;
-    min-height: 250px;
     background-color: white;
     border-radius: 16px;
     color: black;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+    gap: 20px;
+    padding-bottom: 20px;
+    box-shadow:0 0 10px rgba(0, 0, 0, 0.134);
 }
 
+h1{
+    color: black;
+    font-weight: 600;
+    font-size: 40px;
+    border-bottom: 3px solid rgb(225, 225, 225);
+    text-align: center;
+    margin: 0;
+    width: 100%;
+    padding-block: 5px;
+    margin-block: 5px;
+}
+
+
+
+#text{
+    margin-inline: 30px;
+    text-align: justify;
+}
+
+label{
+    text-align: center;
+    width: 100%;
+}
+
+input{
+    font-size: 25px;
+    padding: 5px;
+    max-width: 200px;
+    border: 3px solid rgb(225, 225, 225);
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+input:focus{
+    border-color: var(--blue);
+}
+
+#button{
+    background-color: transparent;
+    font-size: 25px;
+    padding: 5px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    border: 3px solid rgb(225, 225, 225);
+    color: rgb(132, 132, 132);
+    transition: all 0.2s ease-in-out;
+}
+
+#button:hover{
+    color: white;
+    background-color: var(--blue);
+    text-decoration: none;
+}
+
+#button:focus{
+    cursor: pointer;
+    border-color: var(--blue);
+    background-color:rgba(13, 190, 239, 0.293);
+    color: var(--blue)
+}
+
+#retrimite{
+    color:rgb(13, 190, 239)
+}
+
+
+p span{
+    font-weight: bold;
+}
+
+form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#submain{
+    display: flex;
+    gap: 3px;
+}
