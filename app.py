@@ -2,7 +2,7 @@ from flask import Flask
 from random import *
 from flask_mail import Mail, Message
 from flask import render_template, url_for, redirect, request, session
-from webapp.form import  verify_register_form, autentificarea ,reset_pass, send_otp, send_otp_phone, register_user, verify_changes, password_hash, create_otp
+from webapp.form import  verify_register_form, autentificarea ,reset_pass, send_otp, send_otp_phone, register_user, verify_changes, password_hash, create_otp, ac_coment
 from webapp import app
 from webapp.otps import otp, otp_phone
 from webapp.database import vot_statistic ,id_user, vot_select ,titluri,select,set_vot,vot_db,validvot,set_vot_popor, get_data_by_id, cautar,introdu,verificare_legi, select_id, get_id_by_title, verificare, inregistrare_changes_db, inreg_data,inregistrare , verificare , verificare_pass , inregistrare_changes_db, trimis_coment,sortare_comentarii
@@ -113,11 +113,11 @@ def acasa(id=None):
                 id_lege = str(id_lege)
                 if id==id_lege:
                     ok=False
-            a=sortare_comentarii(str(id))
-            user=[]
-            for i in range(len(a)-1, -1, -1):
-                aux=vot_statistic("inregistrare","id",str(a[i][1]),"username")
-                user.append(str(aux[0][0]))
+        a=sortare_comentarii(str(id))
+        user=[]
+        for i in range(0, len(a), ):
+            aux=vot_statistic("inregistrare","id",str(a[i][1]),"username")
+            user.append(str(aux[0][0]))
                 
             
         return render_template("layout_lege.html", titlu=titlu, pro=pro, contra=contra, neu=neu, pro_pop=int(pro_pop), con_pop=int(con_pop), neu_pop=int(neu_pop), ok=ok,len=len(a),a=a,user=user)
@@ -726,7 +726,9 @@ def comentarii():
              data+="/"+str(aux.month)
              data+="/"+str(aux.year)
              comentariul=request.form.get("comentariu")
-             if comentariul!=None :
+             b=ac_coment(comentariul)
+             
+             if comentariul!=None and b!="":
                 trimis_coment(str(id_user), str(id_legi),str(data),str(comentariul))
         return redirect(url_for('acasa',id=session['id']))
     else :

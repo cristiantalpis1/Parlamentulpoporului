@@ -148,4 +148,19 @@ def create_otp():
     otp1 = randint(100000, 999999)
     return otp1
     
-        
+def ac_coment(coment):
+    v=["oi","oaie","ras","rasi","prost","prosti","boi","animale","ninormali","handicapati","vafle",
+       "belti","pl","pula","pidaras","pidarasi","vafla","curva","curve","curvari","concinaia"
+       ]
+    b=str(coment)
+    for i in range(0,len(v)):
+        a=b.find(v[i])
+        if a!=-1:
+            return ""
+        a=b.find(v[i].capitalize())
+        if a!=-1:
+            return ""
+        a=b.find(v[i].upper())
+        if a!=-1:
+            return ""
+    return coment
