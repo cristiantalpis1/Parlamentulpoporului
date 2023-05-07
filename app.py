@@ -115,6 +115,7 @@ def acasa(id=None):
                     ok=False
         a=sortare_comentarii(str(id))
         user=[]
+        
         for i in range(0, len(a), ):
             aux=vot_statistic("inregistrare","id",str(a[i][1]),"username")
             user.append(str(aux[0][0]))

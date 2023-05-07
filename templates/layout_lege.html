@@ -161,19 +161,24 @@
           </div>
         {% elif session.get('username')!=None and ok==False %}
           <div id="votultau">
-            <h2>Ai votat {something}</h2>
+            <h2>Ai votat </h2>
           </div>
         {%endif%}
 
-        {%if session.get('username')== None %}
+        {%if session.get('username')!= None  %}
             <!--<div>
                 <a href="{{url_for('autentificare')}}"><button id="voteaza">Voteaza</button></a>
             </div>-->
-        {%endif%}
+          {%if ok==True%}  
+          <div>
+            <button id="voteaza" class="button open-button">Voteaza</button>
+          </div>
+          {%endif%}
+        {%else%}
         <div>
-          <button id="voteaza" class="button open-button">Voteaza</button>
+          <a href="{{url_for('autentificare')}}"><button id="voteaza">Voteaza</button></a>
         </div>
-        
+        {%endif%}
         <dialog class="modal" id="modal">
           <div id="dialogTopPart">
             <div id="txtVoteazaDialog">Voteaza</div>
@@ -209,15 +214,16 @@
                 </div>
                 <div id="likes_dislikes">
                   <i class="fa-regular fa-thumbs-up likes" id="likes" onclick="fillLike(this)"></i>
-                  <span>5</span> 
+                  <span>{{a[i][5]}}</span> 
                   <i class="fa-regular fa-thumbs-up" id="dislikes" onclick="fillLike(this)"></i>
-                  <span>3</span>            
+                  <span>{{a[i][6]}}</span>            
                 </div>
               </div>
             </div>
             {%endfor%}
            
     
+    </div>
     </div>
     <!--script pentru commentarii-->
     <script>
