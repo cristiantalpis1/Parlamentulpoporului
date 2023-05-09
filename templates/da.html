@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exemplu Flask POST</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <form id="my-form">
+        <input type="text" name="my_variable" id="my-variable">
+        <input type="text" name="eu1" id="eu1">
+        <button type="submit">Trimite</button>
+    </form>
+    <p id="casa"></p>
+    <p id="casa1"></p>
+    <script>
+        $(document).ready(function() {
+            $('#my-form').submit(function(event) {
+                event.preventDefault(); // previne reincarcarea paginii
+                var myVariable = $('#my-variable').val();
+                var a=$('#eu1').val();
+                $.ajax({
+                    type: 'POST',
+                    url: '/my-endpoint',
+                    data: { my_variable: myVariable, a: a },
+                    success: function(response) {
+                        document.getElementById("casa").innerHTML = response;
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+

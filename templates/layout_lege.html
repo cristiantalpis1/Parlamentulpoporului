@@ -5,7 +5,9 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='layout_lege.css') }}" >
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
+    
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
@@ -192,11 +194,30 @@
           </form>
         
         </dialog>
-        <form action="{{url_for('comentarii')}}" method="post" id="addComment">
+        <form  id="addComment">
           <i class="fa-regular fa-user account_icon"></i>
-          <input type="text" placeholder="Adauga un comentariu..." id="addCommentInput" name="comentariu">
+          <input type="text" placeholder="Adauga un comentariu..." id="addCommentInput" >
           <button type="submit" id="addCommentButton">Adauga</button>
         </form>
+        <script>
+          $(document).ready(function() {
+                      $('#addComment').submit(function(event) {
+                          event.preventDefault(); // previne reincarcarea paginii
+                          var myVariable = $('#addCommentInput').val();
+                          $.ajax({
+                              type: 'POST',
+                              url: '/comentarii',
+                              data: { my_variable: myVariable },
+                              success: function(response) {
+                                console.log(response)
+                              },
+                              error: function(error) {
+                                  console.log(error);
+                              }
+                          });
+                      });
+                  });
+        </script>
           <div id="commentSectionContainer">
             {%for i in range(len-1, -1, -1)%}
             <div class="comment">
@@ -226,6 +247,7 @@
     </div>
     </div>
     <!--script pentru commentarii-->
+
     <script>
       function fillLike(element) {
         

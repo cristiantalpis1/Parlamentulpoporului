@@ -718,6 +718,7 @@ def reguli():
 @app.route("/comentarii", methods=["GET", "POST"])
 def comentarii():
     global_variables()
+    my_variable = request.form['my_variable']
     if session.get("username"):
         if request.method == 'POST':
              id_user=inreg_data("id",'username',session['username'])
@@ -726,14 +727,23 @@ def comentarii():
              data=str(aux.day)
              data+="/"+str(aux.month)
              data+="/"+str(aux.year)
-             comentariul=request.form.get("comentariu")
-             b=ac_coment(comentariul)
+             #comentariul=request.form.get("comentariu")
+             b=ac_coment(my_variable)
              
-             if comentariul!=None and b!="":
-                trimis_coment(str(id_user), str(id_legi),str(data),str(comentariul))
-        return redirect(url_for('acasa',id=session['id']))
+             if my_variable!=None and b!="":
+                trimis_coment(str(id_user), str(id_legi),str(data),str(my_variable))
+             return str(my_variable)
     else :
         return redirect(url_for('autentificare'))
-    
+
+@app.route('/da')
+def index():
+    a="www"
+    return render_template('da.html',a=a)
+@app.route('/my-endpoint', methods=['POST'])
+def my_endpoint():
+    my_variable = request.form['my_variable']
+    # faceți ceva cu my_variable aici
+    return str(my_variable)
 if __name__ == "__main__":
     app.run(debug = True)
