@@ -249,10 +249,20 @@ footer{
     font-size: 20px;
     color:black;
     max-width: 460px;
+    border: 3px solid var(--blue);
+    padding: 20px ;
 }
 
 #video {
     height:fit-content;
+    border: 3px solid var(--blue);
+    background-color: var(--blue);
+}
+
+.videoLine{
+    height: 3px;
+    background-color: var(--blue);
+    width: 120%;
 }
 
 iframe{
@@ -269,7 +279,16 @@ iframe{
     
 }
 
+#sursa{
+    word-break: break-all;
+}
+
 #sursa a{
+    color: var(--blue);
+    transition: all 0.2s ease-in-out;
+}
+
+#sursa a:hover{
     color: var(--lightblue);
 }
 
@@ -528,6 +547,25 @@ iframe{
 
 /*comment section style*/
 
+#commentsTitleContainer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+  
+#commentsTitle{
+    padding-inline:10px;
+    width: fit-content;
+    font-size: 40px;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    z-index: 2;
+    display: block;
+    margin-left: 10vh;
+    position: absolute;
+}
+
 
 #addComment{
     display: flex;
@@ -535,34 +573,44 @@ iframe{
     justify-content: center;
     align-items: center;
     margin-bottom: -60px;
+    gap: 10px;
 }
 
 #addComment .account_icon{
-    font-size: 60px;
-    margin-right: 10px;
-}
-
-
-#addCommentInput{
-    font-size: 30px;
-    width: 100%;
-    padding: 10px 20px;
-    
-    border: 2px solid var(--lightgray) ;
+    font-size: 50px;
+    margin: 0;
+    color: var(--blue);
 }
 
 #addCommentButton{
-    font-size: 30px;
+    font-size: 22px;
     padding: 10px 20px;
-    color: var(--gray);
+    color: var(--blue);
     background-color: transparent;
-    border: 2px solid var(--lightgray) ;
-    transform: translateX(-2px);
+    border: 2px solid var(--blue) ;
+    border-radius: 2px;
+    transition: all 0.2s ease-in-out;
+    transform: translateY(-0.5px);
 }
+
+
+#addCommentButton:hover{
+    color: white;
+    background-color: var(--blue);
+    text-decoration: none;
+}
+
+#addCommentButton:focus{
+    cursor: pointer;
+    border-color: var(--blue);
+    background-color: rgba(32, 237, 241, 0.285);
+    color:var(--blue);
+}
+
 
 #commentSectionContainer{
     background-color: transparent;
-    border-block: 3px solid var(--lightgray);
+    border-block: 2px solid var(--lightgray);
     max-height: 90vh;
     width: 100%;
     overflow-y: scroll;
@@ -573,7 +621,7 @@ iframe{
 
 .comment{
     display: flex;
-    border-bottom: 3px solid var(--lightgray);
+    border-bottom: 2px solid var(--lightgray);
     margin: 20px;
     padding-bottom: 10px;
 }
@@ -635,6 +683,80 @@ iframe{
     font-size: 24px; 
     margin-right: 10px;
     color: var(--gray);
+}
+
+
+.input-container {
+    position: relative;
+    margin:  auto;
+    width: 100%;
+}
+
+.input-container input[type="text"] {
+    font-size: 30px;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    padding-block: 5px;
+    padding-inline: 10px;
+    background-color: transparent;
+    outline: none;
+}
+
+.input-container .label {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    color: #ccc;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    transform: translatey(6px);
+    font-size: 25px;
+}
+
+.input-container input[type="text"]:focus ~ .label,
+.input-container input[type="text"]:valid ~ .label {
+    top: -30px;
+    font-size: 16px;
+    color: var(--blue);
+}
+
+.input-container .underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background-color: var(--blue);
+    transform: scaleX(0);
+    transition: all 0.3s ease;
+}
+
+.input-container input[type="text"]:focus ~ .underline,
+.input-container input[type="text"]:valid ~ .underline {
+    transform: scaleX(1);
+}
+
+
+/*alte legi*/
+
+#redirectionareLaAlteLegi{
+    display: flex;
+    gap: 16px;
+}
+
+#redirectionareLaAlteLegi i{
+    font-size: 36px;
+    color: var(--blue);
+    cursor: pointer;
+}
+
+#redirectionareLaAlteLegi a{
+    font-size: 30px;
+    text-decoration: none;
+    color: var(--blue);
+    font-weight: bold;
+    transform: translateY(-5px);
 }
 
 /*for different sizes:*/
