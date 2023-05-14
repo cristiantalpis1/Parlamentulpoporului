@@ -119,9 +119,8 @@ def acasa(id=None):
         for i in range(0, len(a), ):
             aux=vot_statistic("inregistrare","id",str(a[i][1]),"username")
             user.append(str(aux[0][0]))
-                
-            
-        return render_template("layout_lege.html", titlu=titlu, pro=pro, contra=contra, neu=neu, pro_pop=int(pro_pop), con_pop=int(con_pop), neu_pop=int(neu_pop), ok=ok,len=len(a),a=a,user=user)
+
+        return render_template("layout_lege.html", titlu=titlu, pro=pro, contra=contra, neu=neu, pro_pop=int(pro_pop), con_pop=int(con_pop), neu_pop=int(neu_pop), ok=ok,len=len(a),a=a,user=user,id=int(id),num=len(titles))
 
 
 @app.route("/inregistrare", methods=['GET', 'POST'])
@@ -726,14 +725,23 @@ def comentarii():
              data=str(aux.day)
              data+="/"+str(aux.month)
              data+="/"+str(aux.year)
-             comentariul=request.form.get("comentariu")
+             comentariul=request.form.get("comentariul")
              b=ac_coment(comentariul)
              
              if comentariul!=None and b!="":
                 trimis_coment(str(id_user), str(id_legi),str(data),str(comentariul))
-        return redirect(url_for('acasa',id=session['id']))
+             return redirect(url_for('acasa', id = session["id"]))
     else :
         return redirect(url_for('autentificare'))
-    
+
+@app.route('/da')
+def index():
+    a="www"
+    return render_template('da.html',a=a)
+@app.route('/my-endpoint', methods=['POST'])
+def my_endpoint():
+    my_variable = request.form['my_variable']
+    # faceți ceva cu my_variable aici
+    return str(my_variable)
 if __name__ == "__main__":
     app.run(debug = True)
