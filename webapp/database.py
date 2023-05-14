@@ -8,7 +8,7 @@ db = mysql.connector.connect(
     database="parlamem_legi"
 )
 # getting the cursor by cursor() method
-def introdu(tit,pro,contra,neu):
+def introdu(tit,pro,contra,neu,link1,incep):
   mycursor = db.cursor()
   a=''
 
@@ -20,7 +20,7 @@ def introdu(tit,pro,contra,neu):
      a='neu'
  
 
-  insertQuery = "INSERT INTO legi (titlu, pro, contra, neu) VALUES ('"+tit+"','"+pro+"','"+contra+"','"+neu+"');"
+  insertQuery = "INSERT INTO legi (titlu, pro, contra, neu,link_youtube,inceput) VALUES ('"+tit+"','"+pro+"','"+contra+"','"+neu+"','"+link1+"','"+incep+"');"
   
   mycursor.execute(insertQuery)
   

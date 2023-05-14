@@ -110,7 +110,7 @@
       <div id="main">
         <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;">
           <div id="video">
-            https://youtu.be/IujQP_KE3L8
+            {{link_y}}
           </div>
           <div class="videoLine"></div>
         </div>
@@ -339,7 +339,7 @@
         return hours * 3600 + minutes * 60 + seconds;
       }
 
-      let timeStamp = toSeconds('00:01:56'); 
+      let timeStamp = toSeconds('{{incep}}'); 
 
       timeStamp.toString
 
