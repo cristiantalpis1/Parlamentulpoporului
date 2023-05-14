@@ -210,7 +210,7 @@
         </div>      
         <button type="submit" id="addCommentButton">Adauga</button>
       </form>
-      <script>
+      <!--<script>
         $(document).ready(function() {
                     $('#addComment').submit(function(event) {
                         event.preventDefault(); // previne reincarcarea paginii
@@ -228,7 +228,7 @@
                         });
                     });
                 });
-      </script>
+      </script>-->
     
       <div id="commentSectionContainer">
         {%for i in range(len-1, -1, -1)%}
@@ -241,24 +241,28 @@
                 <i class="fa-regular fa-clock"></i>
                 <span id="time">{{a[i][3]}}</span>
               </span>
-            </div>
+            </div> 
             <div id="commentText">
               {{a[i][4]}}
             </div>
-            <div id="likes_dislikes">
+           <!-- <div id="likes_dislikes">
               <i class="fa-regular fa-thumbs-up likes" id="likes" onclick="fillLike(this)"></i>
               <span>{{a[i][5]}}</span> 
               <i class="fa-regular fa-thumbs-up" id="dislikes" onclick="fillLike(this)"></i>
               <span>{{a[i][6]}}</span>            
-            </div>
+            </div>-->
           </div>
         </div>
         {%endfor%}
       </div>
       <div id="redirectionareLaAlteLegi">
-        <i class="fa-solid fa-backward-step"></i>
+        {%if id!=num%}
+        <a href="{{ url_for('acasa',id=(id+1)) }}"><i class="fa-solid fa-backward-step"></i></a>
+        {%endif%}
         <a href="{{ url_for('acasa') }}">Alte legi</a>
-        <i class="fa-solid fa-forward-step"></i>
+        {%if 1!=id%}
+        <a href="{{ url_for('acasa',id=(id-1)) }}"><i class="fa-solid fa-forward-step"></i></a>
+        {%endif%}
       </div>
 
     </div>
@@ -295,6 +299,7 @@
         }
         element.parentNode.children[1].innerHTML = likeCount;
         element.parentNode.children[3].innerHTML = dislikeCount;
+        
       }
       const div = document.querySelector('#commentSectionContainer');
       const numComentarii = div.querySelectorAll('.comment').length;
