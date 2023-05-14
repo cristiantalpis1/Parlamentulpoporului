@@ -249,10 +249,24 @@ footer{
     font-size: 20px;
     color:black;
     max-width: 460px;
+    border: 3px solid var(--blue);
+    padding: 20px ;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.123), rgba(148, 145, 145, 0.1));
+    border-radius: 2px;
 }
 
 #video {
     height:fit-content;
+    border: 3px solid var(--blue);
+    background-color: var(--blue);
+    border-radius: 2px;
+    
+}
+
+.videoLine{
+    height: 3px;
+    background-color: var(--blue);
+    width: 120%;
 }
 
 iframe{
@@ -269,7 +283,16 @@ iframe{
     
 }
 
+#sursa{
+    word-break: break-all;
+}
+
 #sursa a{
+    color: var(--blue);
+    transition: all 0.2s ease-in-out;
+}
+
+#sursa a:hover{
     color: var(--lightblue);
 }
 
@@ -317,7 +340,7 @@ iframe{
     height: 260px;
     border-radius: 2px;
     overflow: hidden;
-    box-shadow: 0px 5px 15px 3px rgba(0, 0, 0, 0.208);
+    box-shadow: 0px 5px 15px 3px rgba(0, 0, 0, 0.1);
     transition: all 0.4s ease-in-out;
     
 }
@@ -328,9 +351,10 @@ iframe{
 }
   
 .piechartLabel{
-    font-size: 30px;
+    font-size: 26px;
     justify-self: center;
-    padding-inline:10px ;
+    padding-inline: 40px ;
+    border-bottom: 2px solid var(--blue);
 }
 
 #voteaza{
@@ -528,6 +552,25 @@ iframe{
 
 /*comment section style*/
 
+#commentsTitleContainer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+  
+#commentsTitle{
+    padding-inline:10px;
+    width: fit-content;
+    font-size: 30px;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    z-index: 2;
+    display: block;
+    margin-left: 10vh;
+    position: absolute;
+}
+
 
 #addComment{
     display: flex;
@@ -535,34 +578,44 @@ iframe{
     justify-content: center;
     align-items: center;
     margin-bottom: -60px;
+    gap: 10px;
 }
 
 #addComment .account_icon{
-    font-size: 60px;
-    margin-right: 10px;
-}
-
-
-#addCommentInput{
-    font-size: 30px;
-    width: 100%;
-    padding: 10px 20px;
-    
-    border: 2px solid var(--lightgray) ;
+    font-size: 50px;
+    margin: 0;
+    color: var(--blue);
 }
 
 #addCommentButton{
-    font-size: 30px;
+    font-size: 22px;
     padding: 10px 20px;
-    color: var(--gray);
+    color: var(--blue);
     background-color: transparent;
-    border: 2px solid var(--lightgray) ;
-    transform: translateX(-2px);
+    border: 2px solid var(--blue) ;
+    border-radius: 2px;
+    transition: all 0.2s ease-in-out;
+    transform: translateY(-0.5px);
 }
+
+
+#addCommentButton:hover{
+    color: white;
+    background-color: var(--blue);
+    text-decoration: none;
+}
+
+#addCommentButton:focus{
+    cursor: pointer;
+    border-color: var(--blue);
+    background-color: rgba(32, 237, 241, 0.285);
+    color:var(--blue);
+}
+
 
 #commentSectionContainer{
     background-color: transparent;
-    border-block: 3px solid var(--lightgray);
+    border-block: 2px solid var(--lightgray);
     max-height: 90vh;
     width: 100%;
     overflow-y: scroll;
@@ -573,7 +626,7 @@ iframe{
 
 .comment{
     display: flex;
-    border-bottom: 3px solid var(--lightgray);
+    border-bottom: 2px solid var(--lightgray);
     margin: 20px;
     padding-bottom: 10px;
 }
@@ -637,6 +690,80 @@ iframe{
     color: var(--gray);
 }
 
+
+.input-container {
+    position: relative;
+    margin:  auto;
+    width: 100%;
+}
+
+.input-container input[type="text"] {
+    font-size: 30px;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    padding-block: 5px;
+    padding-inline: 10px;
+    background-color: transparent;
+    outline: none;
+}
+
+.input-container .label {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    color: #ccc;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    transform: translatey(6px);
+    font-size: 25px;
+}
+
+.input-container input[type="text"]:focus ~ .label,
+.input-container input[type="text"]:valid ~ .label {
+    top: -30px;
+    font-size: 16px;
+    color: var(--blue);
+}
+
+.input-container .underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background-color: var(--blue);
+    transform: scaleX(0);
+    transition: all 0.3s ease;
+}
+
+.input-container input[type="text"]:focus ~ .underline,
+.input-container input[type="text"]:valid ~ .underline {
+    transform: scaleX(1);
+}
+
+
+/*alte legi*/
+
+#redirectionareLaAlteLegi{
+    display: flex;
+    gap: 16px;
+}
+
+#redirectionareLaAlteLegi i{
+    font-size: 36px;
+    color: var(--blue);
+    cursor: pointer;
+}
+
+#redirectionareLaAlteLegi a{
+    font-size: 30px;
+    text-decoration: none;
+    color: var(--blue);
+    font-weight: bold;
+    transform: translateY(-5px);
+}
+
 /*for different sizes:*/
 @media screen and (max-width:50em){
     
@@ -659,13 +786,7 @@ iframe{
         transition: all 0.3s ease-in-out;
         height: 2em;
     }
-    #main{
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding-inline: 60px;
-        gap: 10px;
-    }
+
 
     #cautare:focus{
         width:12em;
@@ -682,19 +803,56 @@ iframe{
     .account_icon{
         font-size: 1.7em;
     }
-
-    #tit{
-        font-size: 2rem;
+    /* end of navbar*/
+    #main{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
     }
+
+    #all{
+        padding: 10px;
+    }
+
 
 
     #title{
         padding-inline: 20px;
+        font-size: 30px;
+    }
+
+    .videoLine{
+        width: 112%;
+    }
+    #video{
+        width: 330px;
+        height: 195px;
+        overflow: hidden;
+    }
+
+    iframe{
+        width: inherit;
+        height: inherit;
+    }
+
+
+    #descriere{
+        font-size: 1em;
+        text-align: center;
+        width: 90%;
+    }
+
+    #all{
+        margin-top: 10vh;
+        margin-inline:0;
+        gap: 40px;
     }
 
     #voturiContainer{
         flex-direction: column;
         gap: 20px;
+        margin-inline: 30px;
     }
 
     #socials{
@@ -708,37 +866,17 @@ iframe{
 
     #voturiTitle{
         text-align: center;
-        left: 0;
-        right: 0;
-        margin: 0;
+        margin: auto;
+        font-size: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+
     }
 
     .piechartLabel{
         font-size: 1.2em;
     }
 
-
-    #video{
-        width: 350px;
-        height: 195px;
-    }
-
-    iframe{
-        width: inherit;
-        height: inherit;
-    }
-
-
-    #descriere{
-        font-size: 1em;
-        text-align: center;
-    }
-
-    #all{
-        margin-top: 10vh;
-        margin-inline:0;
-        gap: 40px;
-    }
 
     #voteaza{
         font-size: 1em;

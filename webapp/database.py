@@ -302,7 +302,7 @@ def vot_statistic(tabel,camp,data,nume):
 
 def trimis_coment(id_user, id_lege, data, coment):
   mycursor = db.cursor()
-  insertQuery = "INSERT INTO comentarii(id_user,id_lege, data, comentariu) VALUES ("+id_user+","+id_lege+",'"+data+"','"+coment+"');"
+  insertQuery = "INSERT INTO comentarii(id_user,id_lege, data, comentariu,like_com, dislike_com) VALUES ("+id_user+","+id_lege+",'"+data+"','"+coment+"',0,0);"
   
   mycursor.execute(insertQuery)
 

@@ -149,7 +149,7 @@ def create_otp():
     return otp1
     
 def ac_coment(coment):
-    v=["oi","oaie","ras","rasi","prost","prosti","boi","animale","ninormali","handicapati","vafle",
+    v=["oi","oaie","oaia","ras","rasi","prost","prosti","boi","animale","ninormali","handicapati","vafle",
        "belti","pl","pula","pidaras","pidarasi","vafla","curva","curve","curvari","concinaia"
        ]
     b=str(coment)
