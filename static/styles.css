@@ -109,6 +109,13 @@ header a:hover{
     text-decoration: none;
 }
 
+#limba{
+    display: flex;
+    color: white;
+    font-size: 30px;
+    gap: 10px;
+}
+
 /**/
 
 #navLinks a::after{
@@ -403,20 +410,75 @@ footer{
 
     header{
         height: 80px;
+        flex-direction: column;
+        justify-content: center
+        
+    }
+
+    #navLinks a{
+        font-size: 16px;
+    }
+
+    
+    #searchButton{
+        display: none;
+    }
+
+
+    #cautareForm{
+        display: none;
+    }
+
+    #searchButton2{
+        background-color: transparent;
+        border:none;
+        color:white;
+        transition: all 0.3s ease-in-out;
+    }
+
+    #searchButton2{
+        font-size: 2.4em;
+    }
+    
+    #searchButton2:hover{
+        color: var(--lightblue);
+    }
+    
+
+    #cautareForm2{
+        background-color: #030a19f0;
+        border-bottom: 3px solid var(--blue);
+        position: absolute;
+        width: 100%;
+        padding: 10px;
+        top: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: none;
     }
 
     #logo{
         width: 7rem;
         margin-left: 1rem;
     }
-    #cautare{
-        font-size: 1em;
-        width: 6em;
+
+    #searchButton3{
+        background-color: transparent;
+        border:none;
+        color:white;
         transition: all 0.3s ease-in-out;
-        height: 2em;
     }
 
+    #searchButton3 i{
+        font-size: 3.5em;
+    }
     
+    #searchButton3:hover{
+        color: var(--lightblue);
+    }
+    
+
 
     #main{
         margin-top: 1vh;
@@ -427,9 +489,6 @@ footer{
         width:12em;
     }
 
-    #searchButton{
-        display: none;
-    }
 
     #nav{
         gap:1em;
@@ -438,6 +497,39 @@ footer{
     .account_icon{
         font-size: 1.7em;
     }
+
+
+    #socials{
+        flex-direction: column;
+        align-items: center;
+        gap: 1em;
+    }
+    .socialIcon{
+        font-size: 1em;
+    }
+
+    /*footer*/
+
+    footer{
+        padding: 2vh;
+    }
+
+    #socials{
+        gap: 1em;
+    }
+    .socialIcon{
+        font-size: 1em;
+    }
+
+    #information .info{
+        font-size: 12px;
+    }
+
+    #information{
+        gap: 10px;
+    }
+    
+    /*navbar end*/
 
     #legi{
         grid-template-columns: 1fr;
@@ -459,14 +551,6 @@ footer{
         padding-block: 1em;
     }
 
-    #socials{
-        flex-direction: column;
-        align-items: center;
-        gap: 1em;
-    }
-    .socialIcon{
-        font-size: 1em;
-    }
     #txt1{
         font-size: 20px;
         padding-inline:10px;

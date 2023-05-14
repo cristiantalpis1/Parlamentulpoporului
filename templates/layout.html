@@ -27,36 +27,40 @@
     <body>
         
         <header id="header">
-            <a href="{{ url_for('acasa') }}"><img src="{{url_for('static',filename='cover_white.png')}}" id="logo"></a>
-            
-            <nav id="nav" >
-                <div id="navLinks">
-                    <a href="{{ url_for('reguli') }}" >Reguli</a>
-                    <!--<a href="" >Despre noi</a>-->
-                </div>
-                <form action="{{ url_for('cautare') }}" method="post" id="cautareForm">
-                    <input type="text"
-                    placeholder="Cautare..."
-                    id="cautare" name="caut">
-                    <button type="submit" id="searchButton">  <i class="material-icons" >search</i></button>
-                </form>
-               
-
-                <div>  
-                    {%if session.get("username")!=None  %}
-                        <a href="{{ url_for('account') }}"><i class="fa-regular fa-user account_icon"></i></a>
-                    {%else%}
-                        <a href="{{ url_for('inregistrare') }}"id="inregistrare"><i class="fa-regular fa-user account_icon"></i></a>
-                    {%endif%}
-                </div>
+            <div style="display: flex; width: 100%;">
+                <a href="{{ url_for('acasa') }}"><img src="{{url_for('static',filename='cover_white.png')}}" id="logo"></a>
                 
-                <!-- <div id="limba">
-                    <p class="active-locale">RO</p>
-                </div> -->
+                <nav id="nav" >
+                    <div id="navLinks">
+                        <a href="{{ url_for('reguli') }}">Reguli</a>
+                        <!--<a href="" >Despre noi</a>-->
+                    </div>
+                    <form action="{{ url_for('cautare') }}" method="post" id="cautareForm">
+                        <input type="text"
+                        placeholder="Cautare..."
+                        id="cautare" name="caut">
+                        <button type="submit" id="searchButton">  <i class="material-icons" >search</i></button>
+                    </form>
+                    <i class="material-icons" onclick="openSearch()" id="searchButton2">search</i>
 
-            </nav>
-            
-            
+                    <div>  
+                        {%if session.get("username")!=None  %}
+                            <a href="{{ url_for('account') }}"><i class="fa-regular fa-user account_icon"></i></a>
+                        {%else%}
+                            <a href="{{ url_for('inregistrare') }}"id="inregistrare"><i class="fa-regular fa-user account_icon"></i></a>
+                        {%endif%}
+                    </div>
+                    
+                </nav>
+            </div>
+        
+            <form action="{{ url_for('cautare') }}" method="post" id="cautareForm2">
+                <input type="text"
+                placeholder="Cautare..."
+                id="cautare" name="caut">
+                <button type="submit" id="searchButton3">  <i class="material-icons" >search</i></button>
+            </form> 
+        
         </header>
             
 
@@ -65,15 +69,14 @@
         <footer>
             <div id="footerMain">
                 <div id="information">
-                    <a href="" class="info">Feedback</a>
                     <a href="" class="info">Politica de confidentialitate</a>
+                    <a href="" class="info">Feedback</a>
                 </div>
                 <div id="socials"> 
                     <a href=""><i class="fa-brands fa-facebook socialIcon"></i></a>
                     <a href=""><i class="fa-brands fa-instagram socialIcon"></i></a>
                     <a href=""><i class="fa-brands fa-youtube socialIcon"></i></a>
-                    <a href=""><i class="fa-brands fa-twitter socialIcon"></i></a>
-                
+                    <a href=""><i class="fa-brands fa-twitter socialIcon"></i></a>                
                 </div>
             </div>
         </footer>
@@ -90,11 +93,22 @@
             if (prevScrollpos > currentScrollPos || currentScrollPos <= 60) {
                 document.getElementById("header").style.top = "0";
             } else {
-                document.getElementById("header").style.top = "-120px";
+                if(document.getElementById("cautareForm2").style.display == "flex"){
+                    document.getElementById("header").style.top = "-150px";
+                }else{
+                    document.getElementById("header").style.top = "-100px";
+                }
             }
             prevScrollpos = currentScrollPos;
             };
 
+            function openSearch() {
+                if(document.getElementById("cautareForm2").style.display == "none"){
+                    document.getElementById("cautareForm2").style.display = "flex";
+                }else{
+                    document.getElementById("cautareForm2").style.display = "none";
+                };
+            }
 
         </script>
 

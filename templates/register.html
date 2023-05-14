@@ -71,7 +71,7 @@
     {% if taken_username %}
         <script>
             let eroare_nume = document.getElementById("eroare_nume");
-            eroare_nume.style.display = "block";
+            eroare_nume.style.opacity = 1;
             let numeSelectat = document.getElementById("numeSelectat");
             numeSelectat.classList.add("eroareInput")
         </script>
@@ -81,7 +81,7 @@
     {% if taken_email %}
         <script>
             let eroare_email = document.getElementById("eroare_email");
-            eroare_email.style.display = "block";
+            eroare_email.style.color = red;
             let emailSelectat = document.getElementById("emailSelectat");
             emailSelectat.classList.add("eroareInput")
         </script>
@@ -89,7 +89,7 @@
     {% if taken_phone %}
         <script>
             let eroare_phone = document.getElementById("eroare_phone");
-            eroare_phone.style.display = "block";
+            eroare_phone.style.opacity = 1;
             let phone = document.getElementById("phone");
             phone.classList.add("eroareInput")
         </script>
@@ -99,7 +99,7 @@
         let confirmareParolaSelectata = document.getElementById("confirmareParolaSelectata");
         let eroare_password = document.getElementById("eroare_password");
         if(parolaSelectata.innerHTML !== confirmareParolaSelectata.innerHTML){
-            eroare_password.style.display="block";
+            eroare_password.style.opacity = 1;
             parolaSelectata.classList.add("eroareInput");
             confirmareParolaSelectata.classList.add("eroareInput");
         };

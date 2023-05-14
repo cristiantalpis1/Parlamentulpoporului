@@ -34,7 +34,6 @@
           },
           pieSliceTextStyle: {
             fontSize: 16,
-            left: -10,
           },
 
           tooltip: { trigger: 'none' },
@@ -57,7 +56,6 @@
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
-
         chart.draw(data, options);
       }
     </script>
@@ -379,5 +377,8 @@
 
       ifr.innerHTML = newUrl;
     </script>
+
+
+
 {% endblock content %}
 
