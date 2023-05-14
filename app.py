@@ -2,10 +2,9 @@ from flask import Flask
 from random import *
 from flask_mail import Mail, Message
 from flask import render_template, url_for, redirect, request, session
-from webapp.form import  verify_register_form, autentificarea ,reset_pass, send_otp, send_otp_phone, register_user, verify_changes, password_hash, create_otp, ac_coment
-from webapp import app
-from webapp.otps import otp, otp_phone
-from webapp.database import vot_statistic ,id_user, vot_select ,titluri,select,set_vot,vot_db,validvot,set_vot_popor, get_data_by_id, cautar,introdu,verificare_legi, select_id, get_id_by_title, verificare, inregistrare_changes_db, inreg_data,inregistrare , verificare , verificare_pass , inregistrare_changes_db, trimis_coment,sortare_comentarii
+from webapp.form import  verify_register_form, autentificarea ,reset_pass, send_otp, send_otp_phone, register_user, verify_changes, password_hash, create_otp
+from webapp import otp, otp_phone, mail, app
+from webapp.database import vot_statistic ,id_user, vot_select ,titluri,select,set_vot,vot_db,validvot,set_vot_popor, get_data_by_id, cautar,introdu,verificare_legi, select_id, get_id_by_title, verificare, inregistrare_changes_db, inreg_data,inregistrare , verificare , verificare_pass , inregistrare_changes_db
 from datetime import datetime
 from flask_session import Session
 import pandas as pd
@@ -14,25 +13,34 @@ import time
 
 app = Flask(__name__)
 
-#app.config['SECRET_KEY'] = '969bde9448eb7e83012c9d5d8d0f0ada'
+app.config['SECRET_KEY'] = '969bde9448eb7e83012c9d5d8d0f0ada'
 mail = Mail(app)
 
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USERNAME'] = 'parlamentulpoporului@gmail.com'
-app.config['MAIL_PASSWORD'] = 'sthhvyzwvrjtbdwb'
+app.config['MAIL_PASSWORD'] = 'spiqddirjskrlxes'
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
-global poc
-poc=1
+
+global sent
+sent = False
 ##session['ver']
 def global_variables():
     global da
     session['ver']='1'
-    
+    global poc
+    poc=1
+    global sent
+    sent = False
+    global msg1
+    msg1 = 10 #pentru verificare email
+    global sent1
+    sent1 = False
+
     if session.get('username')!=None:
         global username
         global email
@@ -47,6 +55,7 @@ def global_variables():
 def acasa(id=None):
     global_variables()
     titles=titluri()
+    session['ver']=='1'
     if id == None:
         global da
         titles=titluri()
@@ -56,12 +65,11 @@ def acasa(id=None):
         
         if session['ver']=='1' and da>poc:
             poc+=1
-            print("eu")
             session['ver']=None
         if poc*10+len(titles)%10==len(titles):
             session['ver']='2'
         c=poc
-        return render_template("index.html", len = len(titles),titles=titles, ids=ids,b=c)
+        return render_template("index.html", len = len(titles),titles=titles, ids=ids,b=c,d=session['ver'])
     else:
         session['id']=id
         content = get_data_by_id("legi", id)
@@ -103,7 +111,7 @@ def acasa(id=None):
             
             id_user=inreg_data("id","username",session['username'])
             
-            legi_votate_ids=validvot(id_user)# tot ca la autentificafe
+            legi_votate_ids=validvot(id_user[0])
             
             ok=True
             
@@ -113,14 +121,8 @@ def acasa(id=None):
                 id_lege = str(id_lege)
                 if id==id_lege:
                     ok=False
-        a=sortare_comentarii(str(id))
-        user=[]
-        for i in range(0, len(a), ):
-            aux=vot_statistic("inregistrare","id",str(a[i][1]),"username")
-            user.append(str(aux[0][0]))
-                
-            
-        return render_template("layout_lege.html", titlu=titlu, pro=pro, contra=contra, neu=neu, pro_pop=int(pro_pop), con_pop=int(con_pop), neu_pop=int(neu_pop), ok=ok,len=len(a),a=a,user=user)
+        
+        return render_template("layout_lege.html", titlu=titlu, pro=pro, contra=contra, neu=neu, pro_pop=int(pro_pop), con_pop=int(con_pop), neu_pop=int(neu_pop), ok=ok)
 
 
 @app.route("/inregistrare", methods=['GET', 'POST'])
@@ -142,7 +144,6 @@ def inregistrare():
             global passwordh
             global phone_nr
             error, taken_username, taken_email, taken_phone, passwordh, phone_nr=verify_register_form(username,email,phone,password,pass_conf)
-            print(phone_nr)
             if error!="Inregistrare completa": 
                 print(error)
             else:
@@ -180,7 +181,7 @@ def autentificare():
                     if email==None:
                         eror="Acest username este invalid"
                     else:
-                        email=email #eroare sa stiu fac sa mearga [0]
+                        email=email[0]
                     
                 password = request.form.get("password")
                 
@@ -219,7 +220,7 @@ def account():
             gl_username, gl_email, error_us, error_em = verify_changes(username, username_form, email, email_form)
             email = gl_email
             username = gl_username
-        #return str(email)+"   "+str(username)
+        #return email+"   "+username
         
         id=id_user(session['username'])
         
@@ -416,7 +417,7 @@ def logout():
 
 @app.route("/cautare", methods = ['POST'])
 def cautare():
-    
+    global_variables()
     if request.method == "POST":
         caut = request.form.get("caut")
         a=cautar(caut)
@@ -441,7 +442,6 @@ def cautare():
         #return str(da)
         if session['ver']=='1' and n>poc:
             poc+=1
-            print("eu")
             session['ver']=None
         if poc*10+len(da)%10>=len(da):
             session['ver']='2'
@@ -456,37 +456,39 @@ def cautare():
 @app.route("/verificare-email/" , methods=["GET","POST"])
 @app.route("/verificare-email/<exceptie>" , methods=["GET","POST"])
 def email_verification(exceptie = None):
-    global_variables()
     if session.get('username') and exceptie == None:
         return redirect(url_for("acasa"))
-    else:
+    else:   
         global email
-        msg = Message( subject='OTP', sender='parlamentulpoporului@gmail.com', recipients=[str(email)])
-        print('merge')
-        msg.body = str(otp)
-        print(msg)
-        mail.send(msg)
-        print('mergeok')
-        msg1=str(otp)
+        global sent
+        global msg1
+        if sent == False:
+            msg = Message(subject='OTP', sender='parlamentulpoporului@gmail.com', recipients=[email])
+            msg.body = str(otp)
+            mail.send(msg)
+            msg1 = otp
+            print('mesajul s-a trimis')
         if request.method == "POST":
             otp_form = request.form.get("otp")
-            if otp_form == msg1:
+            print(msg1)
+            print(otp_form)
+            if otp_form == str(msg1):
                 if exceptie == "forgot-password":
                     return redirect(url_for('reseteaza_parola', exceptie = "forgot-password"))
                 else:
+                    global_variables()
                     return redirect(url_for("sms"))
             else:
                 print("Otp invalid")
+        sent = True
 
-    return render_template('email_verification.html', email=email, msg=msg)
+    return render_template('email_verification.html', email=email, msg=msg1)
 
 @app.route("/admin" , methods=["GET","POST"])
 def admin():
     if request.method == "POST":
         a=request.form.get("file1")
-        print(a)
         data = pd.read_excel(a)
-        print(data)
         tit=data['Denumire'].tolist()
         pro1=data['Lectura 1'].tolist()
         cont1=data['Unnamed: 2'].tolist()
@@ -528,8 +530,8 @@ def admin():
 
 @app.route("/acasa/pro" , methods=["GET","POST"])
 def pro():
-    
     a=select(session['id'])
+    #return str(a[0][0])+"      "+str(a[0][1])+"     "+str(a[0][2])
     if a[0][0] != None:
         b=int(a[0][0])
     else:
@@ -661,41 +663,39 @@ def sms():
     global username
     global email
     global passwordh
-    account_sid = 'ACfd8f42b2319e166669e54f00026c5def' 
-    auth_token = '7c81905be90499b96d17d92cfdede82a' 
-    client = Client(account_sid, auth_token) 
-    message = client.messages.create(  
-                                messaging_service_sid='MGa91850e937131d1178348517855ca354', 
-                                body=otp_phone,      
-                                to=phone_nr
+    global sent
+    print(sent)
+    if sent == False:
+        account_sid = 'ACfd8f42b2319e166669e54f00026c5def' 
+        auth_token = '908317d7b09130c83d284530a30312ef' 
+        client = Client(account_sid, auth_token) 
+        message = client.messages.create(  
+                                    messaging_service_sid='MGa91850e937131d1178348517855ca354', 
+                                    body=otp_phone,      
+                                    to=phone_nr
                             ) 
+        
+        print('otp_phone trimis')
+    sent = True
     if request.method == "POST":
         
-        global_variables()
-        
-
-        a=str(username)
-        b=str(email)
-        c=str(phone_nr)
-        d=str(passwordh)
-        
-
-        #msg1=str(otp_phone)
-        
-        otp2 = request.form.get("otp32")
-        #return a+" "+b+" "+c+" "+d+"  "+str(otp2)+"     "+str(otp_phone)  
-        if str(otp2) == str(otp_phone):
-            
+        otp_form = request.form.get("otp")
+        print(otp_form)
+        print(otp_phone)
+        if str(otp_form) == str(otp_phone):
             register_user(username, email, phone_nr, passwordh)
-            session["email"]=b
-            session["username"]=a
+            session["email"]=str(email)
+            session["username"]=str(username)
+            global_variables()
             return redirect(url_for('acasa'))
-        #else:
-        #    return "Otp invalid"
+        else:
+            error = "Otp invalid"
+            return error
     return render_template("phone_verification.html",phone=phone_nr)
 
 @app.route('/forgot-password', methods=["GET", "POST"])
 def forgot_password():
+    global_variables()
     var = None
     error = None
     global email
@@ -713,26 +713,6 @@ def forgot_password():
 def reguli():
     global_variables()
     return render_template("reguli.html")
-
-@app.route("/comentarii", methods=["GET", "POST"])
-def comentarii():
-    global_variables()
-    if session.get("username"):
-        if request.method == 'POST':
-             id_user=inreg_data("id",'username',session['username'])
-             id_legi=session['id']
-             aux=datetime.now()
-             data=str(aux.day)
-             data+="/"+str(aux.month)
-             data+="/"+str(aux.year)
-             comentariul=request.form.get("comentariu")
-             b=ac_coment(comentariul)
-             
-             if comentariul!=None and b!="":
-                trimis_coment(str(id_user), str(id_legi),str(data),str(comentariul))
-        return redirect(url_for('acasa',id=session['id']))
-    else :
-        return redirect(url_for('autentificare'))
     
 if __name__ == "__main__":
     app.run(debug = True)
