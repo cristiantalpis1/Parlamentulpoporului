@@ -197,10 +197,15 @@ body{
     font-size: 25px;
 }
 
-#link{
-    color: var(--lightblue);
+.link{
+    color: white;
     font-size: 20px;
-    text-decoration: none;
+    text-decoration: underline;
+    transition: all 0.3s ease-in-out;
+}
+
+.link:hover{
+    color: var(--lightblue);
 }
 
 #bottomText{

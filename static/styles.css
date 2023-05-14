@@ -222,9 +222,9 @@ footer{
     text-align: center;
     font-size: 3.75rem;
     font-weight: 500;
-    color:black;
+    color:var(--blue);
     padding-bottom: 0.625rem;
-    border-bottom: 4px solid #0C1836;
+    border-bottom: 4px solid var(--blue);
 }
 
 
@@ -238,7 +238,7 @@ footer{
     line-height: 1.6em;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.123), rgba(148, 145, 145, 0.1));
 
-    box-shadow: 0 0 13px #0b2e8689;
+    box-shadow: 0 0 13px #0b2e8646;
     transition: all 0.4s ease-in-out;
     
     
@@ -303,75 +303,6 @@ footer{
 }
 
 
-
-/*for different sizes:*/
-@media screen and (max-width:50em){
-
-    header{
-        height: 80px;
-    }
-
-    #logo{
-        width: 7rem;
-        margin-left: 1rem;
-    }
-    #cautare{
-        font-size: 1em;
-        width: 6em;
-        transition: all 0.3s ease-in-out;
-        height: 2em;
-    }
-    #main{
-        margin-top: 1vh;
-
-    }
-
-    #cautare:focus{
-        width:12em;
-    }
-
-    #searchButton{
-        display: none;
-    }
-
-    #nav{
-        gap:1em;
-    }
-
-    .account_icon{
-        font-size: 1.7em;
-    }
-
-    #legi{
-        grid-template-columns: 1fr;
-    }
-
-    #tit{
-        font-size: 2rem;
-    }
-
-    #main{
-        margin-inline: 10px;
-        margin-block: 15vh;
-    }
-    #legi{
-        margin:3ch;
-    }
-    .lege{
-        font-size: 1em;
-        padding-block: 1em;
-    }
-
-    #socials{
-        flex-direction: column;
-        align-items: center;
-        gap: 1em;
-    }
-    .socialIcon{
-        font-size: 1em;
-    }
-}
-
 /*pentru descrierea de la inceput*/
 
 
@@ -381,6 +312,7 @@ footer{
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+    background-position: center;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -432,6 +364,7 @@ footer{
     color: white;
     line-height: 1.5em;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.361);
+    text-align: center;
 
 }
 
@@ -462,4 +395,105 @@ footer{
 
 .custom-shape-divider-top-1680375570 .shape-fill {
     fill: #030A19;
+}
+
+
+/*for different sizes:*/
+@media screen and (max-width:50em){
+
+    header{
+        height: 80px;
+    }
+
+    #logo{
+        width: 7rem;
+        margin-left: 1rem;
+    }
+    #cautare{
+        font-size: 1em;
+        width: 6em;
+        transition: all 0.3s ease-in-out;
+        height: 2em;
+    }
+
+    
+
+    #main{
+        margin-top: 1vh;
+
+    }
+
+    #cautare:focus{
+        width:12em;
+    }
+
+    #searchButton{
+        display: none;
+    }
+
+    #nav{
+        gap:1em;
+    }
+
+    .account_icon{
+        font-size: 1.7em;
+    }
+
+    #legi{
+        grid-template-columns: 1fr;
+    }
+
+    #tit{
+        font-size: 2rem;
+    }
+
+    #main{
+        margin-inline: 10px;
+        margin-block: 15vh;
+    }
+    #legi{
+        margin:3ch;
+    }
+    .lege{
+        font-size: 1em;
+        padding-block: 1em;
+    }
+
+    #socials{
+        flex-direction: column;
+        align-items: center;
+        gap: 1em;
+    }
+    .socialIcon{
+        font-size: 1em;
+    }
+    #txt1{
+        font-size: 20px;
+        padding-inline:10px;
+        max-width: 350px;
+    }
+
+    #txt2{
+        right: 10px;
+        font-size: 12px;
+        width: 300px;
+    } 
+    #txt3{
+        font-size: 12px;
+        width: 300px;
+        left: 14px;
+    }
+
+    #txt4{
+        font-size: 12px;
+        width: 240px;
+    }
+
+    #image{
+        height: 650px;
+        background-size:cover;
+        gap: 30px;
+    }
+
+
 }

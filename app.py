@@ -99,7 +99,7 @@ def acasa(id=None):
         if content[0][10] != None and content[0][10] != "nan":
             link_y = content[0][10]
         else:
-            link_y='https://www.youtube.com/watch?v=Vqokufyf-DM'
+            link_y=''
         if content[0][11] != None and content[0][11] != "nan":
             incep = content[0][11]
         else:
@@ -128,6 +128,8 @@ def acasa(id=None):
             user.append(str(aux[0][0]))
 
         return render_template("layout_lege.html", titlu=titlu, pro=pro, contra=contra, neu=neu, pro_pop=int(pro_pop), con_pop=int(con_pop), neu_pop=int(neu_pop), ok=ok,len=len(a),a=a,user=user,id=int(id),num=len(titles),link_y=str(link_y),incep=incep)
+  
+
 
 
 @app.route("/inregistrare", methods=['GET', 'POST'])
