@@ -119,9 +119,8 @@ def acasa(id=None):
         for i in range(0, len(a), ):
             aux=vot_statistic("inregistrare","id",str(a[i][1]),"username")
             user.append(str(aux[0][0]))
-                
-            
-        return render_template("layout_lege.html", titlu=titlu, pro=pro, contra=contra, neu=neu, pro_pop=int(pro_pop), con_pop=int(con_pop), neu_pop=int(neu_pop), ok=ok,len=len(a),a=a,user=user)
+
+        return render_template("layout_lege.html", titlu=titlu, pro=pro, contra=contra, neu=neu, pro_pop=int(pro_pop), con_pop=int(con_pop), neu_pop=int(neu_pop), ok=ok,len=len(a),a=a,user=user,id=int(id),num=len(titles))
 
 
 @app.route("/inregistrare", methods=['GET', 'POST'])
@@ -727,11 +726,11 @@ def comentarii():
              data=str(aux.day)
              data+="/"+str(aux.month)
              data+="/"+str(aux.year)
-             #comentariul=request.form.get("comentariu")
-             b=ac_coment(my_variable)
+             comentariul=request.form.get("comentariu")
+             b=ac_coment(comentariul)
              
              if my_variable!=None and b!="":
-                trimis_coment(str(id_user), str(id_legi),str(data),str(my_variable))
+                trimis_coment(str(id_user), str(id_legi),str(data),str(comentariul))
              return str(my_variable)
     else :
         return redirect(url_for('autentificare'))
