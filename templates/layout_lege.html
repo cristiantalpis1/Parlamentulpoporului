@@ -10,9 +10,9 @@
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
-        pro= {{ pro | tojson }}
-        contra={{ contra | tojson }}
-        neu= {{ neu | tojson }}
+        pro= 23//{{ pro | tojson }}
+        contra= 12//{{ contra | tojson }}
+        neu= 18//{{ neu | tojson }}
         console.log(neu)
         pro1=parseInt(pro)
         cont1=parseInt(contra)
@@ -27,24 +27,29 @@
         var options = {
           title: 'Lectura 1',
           titleTextStyle: {
-                fontSize: 30,
-                bold: true,
-            },
-        
+            fontSize: 30,
+            bold: true,
+          },
+          pieSliceTextStyle: {
+            fontSize: 16,
+            left: -10,
+          },
+
+          tooltip: { trigger: 'none' },
           colors: ['#00e500', 'red', 'blue'],
           legend: {
-                textStyle: {
-                    fontSize: 14,
-                    }
+            textStyle: {
+              fontSize: 18,
+            }
           },
-          width: 380,
-          height: 260,
+          width: 360,
+          height: 280,
           chartArea: {
             top: 10,
-            bottom: 10,
+            bottom: 5,
             left: 15,
             right: 10,
-        },
+          },
             
         
         };
@@ -70,27 +75,34 @@
           var options = {
           title: 'Lectura 2',
           titleTextStyle: {
-                fontSize: 30,
-                bold: true,
-            },
-        
+            fontSize: 30,
+            bold: true,
+          },
+          pieSliceTextStyle: {
+            fontSize: 16,
+            left: -10,
+          },
+
+          tooltip: { trigger: 'none' },
           colors: ['#00e500', 'red', 'blue'],
           legend: {
-                textStyle: {
-                    fontSize: 16,
-                    }
+            textStyle: {
+              fontSize: 18,
+            }
           },
-          width: 380,
-          height: 260,
+          width: 360,
+          height: 280,
           chartArea: {
             top: 10,
-            bottom: 10,
+            bottom: 5,
             left: 15,
             right: 10,
-        },
+          },
+            
+        
         };
   
-          var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+          var chart = new google.visualization.PieChart(document.getElementById('piechart3'));
   
           chart.draw(data, options);
         }
@@ -198,16 +210,17 @@
       <div class="line"></div>
     </div> 
 
-      <form action="{{url_for('comentarii')}}" method="post" id="addComment">
+      <form action="{{url_for('comentarii')}}"  method="post" id="addComment">
         <i class="fa-regular fa-user account_icon"></i>
-        <!--<input type="text" placeholder="Adauga un comentariu..." id="addCommentInput" name="comentariu">-->
         <div class="input-container">
           <input type="text" id="input" id="addCommentInput" name="comentariu" required="">
           <label for="input" class="label" >Comenteaza...</label>
           <div class="underline"></div>
         </div>      
-        <button type="submit" id="addCommentButton">Adauga</button>
+        <button type="submit" id="addCommentButton" onclick="">Adauga</button>
       </form>
+
+      
 
     
       <div id="commentSectionContainer">
@@ -254,8 +267,11 @@
         if (element.classList.contains("fa-regular") && element == like) {
           element.classList.remove("fa-regular");
           element.classList.add("fa-solid");
-          dislike.classList.remove("fa-solid");
-          dislike.classList.add("fa-regular");
+          if(dislike.classList.contains("fa-solid")){
+            dislike.classList.remove("fa-solid");
+            dislike.classList.add("fa-regular");
+            dislikeCount--;
+          }
           likeCount++;
         } else if (element.classList.contains("fa-solid") && element == like) {
           element.classList.remove("fa-solid");
@@ -264,8 +280,11 @@
         } else if (element.classList.contains("fa-regular") && element == dislike) {
           element.classList.remove("fa-regular");
           element.classList.add("fa-solid");
-          like.classList.remove("fa-solid");
-          like.classList.add("fa-regular");
+          if(like.classList.contains("fa-solid")){
+            like.classList.remove("fa-solid");
+            like.classList.add("fa-regular");
+            likeCount--;
+          }          
           dislikeCount++;
         } else if (element.classList.contains("fa-solid") && element == dislike) {
           element.classList.remove("fa-solid");
@@ -280,7 +299,7 @@
       if(numComentarii !== 1){
         document.getElementById("commentsTitle").innerHTML = numComentarii + " comentarii";
       }else{
-        document.getElementById("commentsTitle").innerHTML = "1 comenrariu";
+        document.getElementById("commentsTitle").innerHTML = "1 comentariu";
       }
     </script>
 
