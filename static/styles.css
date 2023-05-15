@@ -5,6 +5,7 @@ html:focus-within{
 :root{
     --blue: #030A19; 
     --gray: rgb(112, 112, 112);
+    --lightgray: rgb(225, 225, 225);
     --red: rgb(208, 9, 9);
     --green: rgb(0, 229, 0);
     --lightblue: rgb(16, 210, 213);

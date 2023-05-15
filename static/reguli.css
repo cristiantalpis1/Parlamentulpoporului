@@ -23,6 +23,7 @@ body{
 }
 
 #main{
+
 }
 
 #container{
@@ -242,4 +243,14 @@ body{
     border-color: white;
     background-color: rgba(32, 237, 241, 0.285);
     color:white;
+}
+
+@media screen and (max-width:50em){
+
+    .line{
+        height: 3px;
+        background-color: var(--gray);
+        width: 300px;
+    }
+
 }
