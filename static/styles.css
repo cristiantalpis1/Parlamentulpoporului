@@ -149,6 +149,15 @@ header a:hover{
 #navLinks a{
     transition: all 0.3s ease-in-out;
 }
+
+#searchButton2{
+    display: none;
+}
+
+#cautareForm2{
+    display: none;
+}
+
 /*nav-bar end*/
 
 
@@ -434,6 +443,7 @@ footer{
         border:none;
         color:white;
         transition: all 0.3s ease-in-out;
+        display: block;
     }
 
     #searchButton2{
@@ -500,7 +510,6 @@ footer{
 
 
     #socials{
-        flex-direction: column;
         align-items: center;
         gap: 1em;
     }

@@ -96,7 +96,14 @@ def acasa(id=None):
             neu_pop = content[0][7]
         else:
             neu_pop = 0
-
+        if content[0][10] != None and content[0][10] != "nan":
+            link_y = content[0][10]
+        else:
+            link_y=''
+        if content[0][11] != None and content[0][11] != "nan":
+            incep = content[0][11]
+        else:
+            incep ='0:0:0'
         ok = None
         
         if session.get("username"):
@@ -120,7 +127,9 @@ def acasa(id=None):
             aux=vot_statistic("inregistrare","id",str(a[i][1]),"username")
             user.append(str(aux[0][0]))
 
-        return render_template("layout_lege.html", titlu=titlu, pro=pro, contra=contra, neu=neu, pro_pop=int(pro_pop), con_pop=int(con_pop), neu_pop=int(neu_pop), ok=ok,len=len(a),a=a,user=user,id=int(id),num=len(titles))
+        return render_template("layout_lege.html", titlu=titlu, pro=pro, contra=contra, neu=neu, pro_pop=int(pro_pop), con_pop=int(con_pop), neu_pop=int(neu_pop), ok=ok,len=len(a),a=a,user=user,id=int(id),num=len(titles),link_y=str(link_y),incep=incep)
+  
+
 
 
 @app.route("/inregistrare", methods=['GET', 'POST'])
@@ -497,9 +506,13 @@ def admin():
         pro3=data['Lectura 3'].tolist()
         cont3=data['Unnamed: 8'].tolist()
         neu3=data['Unnamed: 9'].tolist()
+        link1=data['Dezbatere 1'].tolist()
+        incep=data['Inceput'].tolist()
+        
         len1=len(tit)
         for i in range(1, len(tit) ):
             b=verificare_legi(tit[i])
+            
             pro_s=0
             cont_s=0
             neu_s=0
@@ -522,7 +535,7 @@ def admin():
                     neu_s+=int(neu2[i])
                 if not pd.isna(neu3[i]) :
                     neu_s+=int(neu3[i])
-                introdu(str(tit[i]),str(pro_s),str(cont_s),str(neu_s))
+                introdu(str(tit[i]),str(pro_s),str(cont_s),str(neu_s),str(link1[i]),str(incep[i]))
             print(b)
     return render_template("admin.html")
 
@@ -717,6 +730,7 @@ def reguli():
 @app.route("/comentarii", methods=["GET", "POST"])
 def comentarii():
     global_variables()
+    my_variable = request.form['my_variable']
     if session.get("username"):
         if request.method == 'POST':
              id_user=inreg_data("id",'username',session['username'])
@@ -725,12 +739,12 @@ def comentarii():
              data=str(aux.day)
              data+="/"+str(aux.month)
              data+="/"+str(aux.year)
-             comentariul=request.form.get("comentariul")
+             comentariul=request.form.get("comentariu")
              b=ac_coment(comentariul)
              
-             if comentariul!=None and b!="":
+             if my_variable!=None and b!="":
                 trimis_coment(str(id_user), str(id_legi),str(data),str(comentariul))
-             return redirect(url_for('acasa', id = session["id"]))
+             return str(my_variable)
     else :
         return redirect(url_for('autentificare'))
 
