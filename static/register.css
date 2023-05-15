@@ -125,10 +125,11 @@ h1{
 
 #text{
     color: black;
-    font-size: 1.2em;
+    font-size: 50px;
     max-width: 50vw;
     text-align: center;
     line-height: 50px;
+    font-weight: bold;
 }
 
 #text div{
@@ -167,12 +168,14 @@ h1{
     #container{
         width: 90%;
         justify-self: center;
+        overflow:hidden;
     }
 
     #text{
         max-width:auto;
-        font-size: 3em;
+        font-size: 90px;
         max-width: 90vw;
+        line-height: 90px;
     }
 
     #logo{
