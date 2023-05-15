@@ -174,12 +174,13 @@ h1{
 
         gap: 20px;
     }
-
     #text{
         max-width:auto;
-        font-size: 3em;
+        font-size: 90px;
         max-width: 90vw;
+        line-height: 90px;
     }
+
 
     #logo{
         width: 600px;
